@@ -2,11 +2,16 @@ package fr.zuntini.fenetres;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -18,23 +23,27 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class LaunchWindow {
+public class LaunchWindow extends JFrame{
 
 	private int width = 609;
 	private int height = 239;
-	
-	private JFrame frame;
+
+	private PrintWriter pw; 
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					LaunchWindow window = new LaunchWindow();
-					window.frame.setVisible(true);
+					window.this.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,38 +54,39 @@ public class LaunchWindow {
 	/**
 	 * Create the application.
 	 */
-	public LaunchWindow() {
+	public LaunchWindow(File f) {
+		super();
+		try {
+			pw = new PrintWriter(f, "UTF-8");
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		initialize();
+		this.setVisible(true);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the this.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				System.out.println("width =" + frame.getWidth() + " height = " + frame.getHeight());
-			}
-		});
-		frame.setTitle("AggreGames First time");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(width, height);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(true);
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-		panel.setPreferredSize(new Dimension(609, 40));
-		panel.setMinimumSize(new Dimension(width, 50));
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{161, 81, 0, 0};
-		gbl_panel.rowHeights = new int[]{14, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		
+		this.setTitle("AggreGames First time");
+		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(610, 269);
+		this.setLocationRelativeTo(null);
+		this.setResizable(true);
+		JPanel UpPanel = new JPanel();
+		UpPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+		UpPanel.setPreferredSize(new Dimension(609, 40));
+		UpPanel.setMinimumSize(new Dimension(width, 50));
+		this.getContentPane().add(UpPanel, BorderLayout.NORTH);
+		GridBagLayout gbl_UpPanel = new GridBagLayout();
+		gbl_UpPanel.columnWidths = new int[]{161, 81, 0, 0};
+		gbl_UpPanel.rowHeights = new int[]{14, 0, 0};
+		gbl_UpPanel.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_UpPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		UpPanel.setLayout(gbl_UpPanel);
 		
 		JLabel lblPltfmUsd = new JLabel("Prefered Platforms used : (The ones you wanna see in your top window)");
 		GridBagConstraints gbc_lblPltfmUsd = new GridBagConstraints();
@@ -85,7 +95,7 @@ public class LaunchWindow {
 		gbc_lblPltfmUsd.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblPltfmUsd.gridx = 0;
 		gbc_lblPltfmUsd.gridy = 0;
-		panel.add(lblPltfmUsd, gbc_lblPltfmUsd);
+		UpPanel.add(lblPltfmUsd, gbc_lblPltfmUsd);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -99,64 +109,77 @@ public class LaunchWindow {
 		gbc_separator.gridwidth = 3;
 		gbc_separator.gridx = 0;
 		gbc_separator.gridy = 1;
-		panel.add(separator, gbc_separator);
+		UpPanel.add(separator, gbc_separator);
 		
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		JPanel MainPanel = new JPanel();
+		this.getContentPane().add(MainPanel, BorderLayout.CENTER);
+		MainPanel.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Steam");
-		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
-		gbc_chckbxNewCheckBox.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox.gridx = 1;
-		gbc_chckbxNewCheckBox.gridy = 2;
-		panel_1.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		JCheckBox cbSteam = new JCheckBox("Steam");
+		cbSteam.setBounds(30, 60, 117, 23);
+		MainPanel.add(cbSteam);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("GoG Galaxy");
-		GridBagConstraints gbc_chckbxNewCheckBox_3 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_3.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox_3.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox_3.gridx = 4;
-		gbc_chckbxNewCheckBox_3.gridy = 2;
-		panel_1.add(chckbxNewCheckBox_3, gbc_chckbxNewCheckBox_3);
+		JCheckBox cbGoG = new JCheckBox("GoG Galaxy");
+		cbGoG.setBounds(184, 34, 89, 23);
+		MainPanel.add(cbGoG);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Origin");
-		GridBagConstraints gbc_chckbxNewCheckBox_2 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_2.insets = new Insets(0, 0, 5, 0);
-		gbc_chckbxNewCheckBox_2.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox_2.gridx = 6;
-		gbc_chckbxNewCheckBox_2.gridy = 2;
-		panel_1.add(chckbxNewCheckBox_2, gbc_chckbxNewCheckBox_2);
+		JCheckBox cbOrigin = new JCheckBox("Origin");
+		cbOrigin.setBounds(342, 34, 77, 23);
+		MainPanel.add(cbOrigin);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Discord Store");
-		GridBagConstraints gbc_chckbxNewCheckBox_1 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_1.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox_1.gridx = 1;
-		gbc_chckbxNewCheckBox_1.gridy = 3;
-		panel_1.add(chckbxNewCheckBox_1, gbc_chckbxNewCheckBox_1);
+		JCheckBox cbDiscord = new JCheckBox("Discord Store");
+		cbDiscord.setBounds(30, 88, 117, 23);
+		MainPanel.add(cbDiscord);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Twitch");
-		GridBagConstraints gbc_chckbxNewCheckBox_4 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_4.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox_4.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox_4.gridx = 4;
-		gbc_chckbxNewCheckBox_4.gridy = 3;
-		panel_1.add(chckbxNewCheckBox_4, gbc_chckbxNewCheckBox_4);
+		JCheckBox cbTwitch = new JCheckBox("Twitch");
+		cbTwitch.setBounds(184, 60, 89, 23);
+		MainPanel.add(cbTwitch);
 		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Others");
-		GridBagConstraints gbc_chckbxNewCheckBox_5 = new GridBagConstraints();
-		gbc_chckbxNewCheckBox_5.insets = new Insets(0, 0, 5, 0);
-		gbc_chckbxNewCheckBox_5.anchor = GridBagConstraints.WEST;
-		gbc_chckbxNewCheckBox_5.gridx = 6;
-		gbc_chckbxNewCheckBox_5.gridy = 3;
-		panel_1.add(chckbxNewCheckBox_5, gbc_chckbxNewCheckBox_5);
+		JCheckBox cbOthers = new JCheckBox("Others");
+		cbOthers.setBounds(342, 60, 77, 23);
+		MainPanel.add(cbOthers);
+		
+		JCheckBox cbEpicStore = new JCheckBox("Epic Store");
+		cbEpicStore.setBounds(30, 34, 117, 23);
+		MainPanel.add(cbEpicStore);
+		
+		JButton btnLaunch = new JButton("Launch");
+		btnLaunch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (cbEpicStore.isSelected())
+					pw.println(cbEpicStore.getText());
+				if (cbSteam.isSelected())
+					pw.println(cbSteam.getText());
+				if (cbGoG.isSelected())
+					pw.println(cbGoG.getText());
+				if (cbOrigin.isSelected())
+					pw.println(cbOrigin.getText());
+				if (cbDiscord.isSelected())
+					pw.println(cbDiscord.getText());
+				if (cbTwitch.isSelected())
+					pw.println(cbTwitch.getText());
+				if (cbOthers.isSelected())
+					pw.println(cbOthers.getText());
+				 pw.close();
+				 System.exit(0);
+			
+			
+			
+			
+			
+			}
+		});
+		btnLaunch.setBounds(86, 140, 89, 23);
+		MainPanel.add(btnLaunch);
+		
+		JButton btnQuitter = new JButton("Quitter");
+		btnQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuitter.setBounds(259, 140, 89, 23);
+		MainPanel.add(btnQuitter);
 	}
-
 }

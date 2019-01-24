@@ -2,7 +2,7 @@ package fr.zuntini.fenetres;
 
 
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JToolBar;
@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -38,14 +39,13 @@ import java.awt.event.WindowEvent;
 
 
 
-public class FenetrePrincipale {
+public class FenetrePrincipale extends JFrame {
 
-	private JFrame frame;
+	
 	private JTextField txtSearchbar;
 	private List firstList = new List();
 	private List list = new List();
 	private Browser br = new Browser();
-
 	/**
 	 * Launch the application.
 	 */
@@ -55,16 +55,18 @@ public class FenetrePrincipale {
 	 * Create the application.
 	 */
 	public FenetrePrincipale() {
+		super();
+		
 		initialize();
-		frame.setVisible(true);
+		this.setVisible(true);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.addWindowListener(new WindowAdapter() {
+
+		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
@@ -73,16 +75,16 @@ public class FenetrePrincipale {
 			}
 		});
 		
-		frame.addComponentListener(new ComponentAdapter() {
+		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
-			//	System.out.println("width =" + frame.getWidth() + " height = " + frame.getHeight() );
+			//	System.out.println("width =" + this.getWidth() + " height = " + this.getHeight() );
 			}
 		});
-		//frame.setUndecorated(true);
-		frame.setSize(1230, 700);
+		//this.setUndecorated(true);
+		this.setSize(1230, 700);
 		JToolBar toolBar = new JToolBar();
-		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
+		this.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\CDI16\\Desktop\\ProjetJava\\AggreGames\\ressources\\Logo.png"));
@@ -135,7 +137,7 @@ public class FenetrePrincipale {
 		JPanel LeftPanel = new JPanel();
 		LeftPanel.setPreferredSize(new Dimension(315, 1000));
 		LeftPanel.setMaximumSize(new Dimension(700, 10000));
-		frame.getContentPane().add(LeftPanel, BorderLayout.WEST);
+		this.getContentPane().add(LeftPanel, BorderLayout.WEST);
 		
 		txtSearchbar = new JTextField();
 		txtSearchbar.setMinimumSize(new Dimension(315, 10));
@@ -199,12 +201,12 @@ public class FenetrePrincipale {
 			firstList.add(i.toString());
 		}
 		JPanel BottomPanel = new JPanel();
-		frame.getContentPane().add(BottomPanel, BorderLayout.SOUTH);
+		this.getContentPane().add(BottomPanel, BorderLayout.SOUTH);
 		
 		JPanel CentralPanel = new JPanel();
 		CentralPanel.setSize(new Dimension(899, 493));
 		
-		frame.getContentPane().add(CentralPanel, BorderLayout.CENTER);
+		this.getContentPane().add(CentralPanel, BorderLayout.CENTER);
 		
 		Browser br = new Browser();
 		BrowserView view = new BrowserView(br);
