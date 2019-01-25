@@ -3,49 +3,60 @@ package fr.zuntini.fenetres;
 
 
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JToolBar;
 
 
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+
 
 import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
-
+import fr.zuntini.factory.ButtonFactory;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.List;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
 
 
 public class FenetrePrincipale extends JFrame {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtSearchbar;
 	private List firstList = new List();
 	private List list = new List();
-	private Browser br = new Browser();
+	//private Browser br = new Browser();
+	private JLabel lblNewLabel = new JLabel("");
+	private File f = new File ("params.txt");
 	/**
 	 * Launch the application.
 	 */
@@ -70,8 +81,8 @@ public class FenetrePrincipale extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				System.exit(0);
-				br.stop();
-				br.dispose();
+	//			br.stop();
+	//			br.dispose();
 			}
 		});
 		
@@ -79,60 +90,56 @@ public class FenetrePrincipale extends JFrame {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 			//	System.out.println("width =" + this.getWidth() + " height = " + this.getHeight() );
+				System.out.println(lblNewLabel.getWidth());
 			}
 		});
 		//this.setUndecorated(true);
 		this.setSize(1230, 700);
 		JToolBar toolBar = new JToolBar();
+		toolBar.setSize(this.getSize());
 		this.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\CDI16\\Desktop\\ProjetJava\\AggreGames\\ressources\\Logo.png"));
 		toolBar.add(lblNewLabel);
-		
+	
 		// Icons + Menu Button
 		JPanel UpPanel = new JPanel();
 		UpPanel.setBackground(Color.GRAY);
 		UpPanel.setFocusable(false);
 		toolBar.add(UpPanel);
-		UpPanel.setLayout(new GridLayout(0, 5, 0, 0));
+		
+		int numLines = 2;
+		Scanner sc;
+		try {
+			sc = new Scanner (f);
+			while (sc.hasNextLine())
+			{
+				numLines++;
+				sc.nextLine();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		UpPanel.setLayout(new GridLayout(0, numLines, 0, 0));
 		
 		// Options button , always visible
-		JButton btnOptions = new JButton("Options");
-		btnOptions.setForeground(Color.WHITE);
-		btnOptions.setFont(new Font("Impact", Font.BOLD, 32));
-		btnOptions.setBackground(Color.LIGHT_GRAY);
-		UpPanel.add(btnOptions);
-		
-		// Add a game Button
-		JButton btnAddGames = new JButton("Add Games");
-		btnAddGames.setForeground(Color.WHITE);
-		btnAddGames.setFont(new Font("Impact", Font.BOLD, 32));
-		btnAddGames.setBackground(Color.LIGHT_GRAY);
-		
-		
+		UpPanel.add(ButtonFactory.getButton("Options",numLines, toolBar.getSize()));
+
 		// Button under all dynamic
-		JButton btnSteam = new JButton("Steam");
-		btnSteam.setBackground(Color.LIGHT_GRAY);
-		btnSteam.setForeground(Color.WHITE);
-		btnSteam.setFont(new Font("Impact", Font.BOLD, 32));
-		UpPanel.add(btnSteam);
 		
-		
-		JButton btnDiscord = new JButton("Discord");
-		btnDiscord.setBackground(Color.LIGHT_GRAY);
-		btnDiscord.setForeground(Color.WHITE);
-		btnDiscord.setFont(new Font("Impact", Font.BOLD, 32));
-		UpPanel.add(btnDiscord);
-		
-		JButton btnOrigin = new JButton("Origin");
-		btnOrigin.setBackground(Color.LIGHT_GRAY);
-		btnOrigin.setForeground(Color.WHITE);
-		btnOrigin.setFont(new Font("Impact", Font.BOLD, 32));
-		UpPanel.add(btnOrigin);
-		
-		
-		UpPanel.add(btnAddGames);
+		try {
+			sc = new Scanner (f);
+			while (sc.hasNextLine())
+				UpPanel.add(ButtonFactory.getButton(sc.nextLine(), numLines, toolBar.getSize()));
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Add a game Button
+		UpPanel.add(ButtonFactory.getButton("Add Games",numLines, toolBar.getSize()));
+	
 		
 		JPanel LeftPanel = new JPanel();
 		LeftPanel.setPreferredSize(new Dimension(315, 1000));
@@ -208,17 +215,16 @@ public class FenetrePrincipale extends JFrame {
 		
 		this.getContentPane().add(CentralPanel, BorderLayout.CENTER);
 		
-		Browser br = new Browser();
-		BrowserView view = new BrowserView(br);
+		//BrowserView view = new BrowserView(br);
 		
 		
-		CentralPanel.add(view);
-		br.setSize(CentralPanel.getWidth(), CentralPanel.getHeight());
-		br.loadURL("https://www.google.com");
+	//	CentralPanel.add(view);
+		//br.setSize(CentralPanel.getWidth(), CentralPanel.getHeight());
+		//br.loadURL("https://www.google.com");
 		
 		CentralPanel.setBackground(Color.cyan);
-	System.out.println(br.isLoading());
-	System.out.println(br.getURL());
+//	System.out.println(br.isLoading());
+//	System.out.println(br.getURL());
 	}
 
 }

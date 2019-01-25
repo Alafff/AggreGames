@@ -1,17 +1,20 @@
 package fr.zuntini.fenetres;
 
-import java.awt.EventQueue;
+
 
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -27,13 +30,16 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LaunchWindow extends JFrame{
 
 	private int width = 609;
 	private int height = 239;
-
-	private PrintWriter pw; 
+	private File f;
+	private PrintWriter pw;
+	private ArrayList<String> al = new ArrayList<String>();
 
 	/**
 	 * Launch the application.
@@ -56,6 +62,23 @@ public class LaunchWindow extends JFrame{
 	 */
 	public LaunchWindow(File f) {
 		super();
+		this.f = f;
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					if (br.readLine() == null)
+						f.delete();
+					else
+						new FenetrePrincipale();
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+		});
 		try {
 			pw = new PrintWriter(f, "UTF-8");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -148,22 +171,42 @@ public class LaunchWindow extends JFrame{
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				if (cbEpicStore.isSelected())
-					pw.println(cbEpicStore.getText());
+					al.add(cbEpicStore.getText());
 				if (cbSteam.isSelected())
-					pw.println(cbSteam.getText());
+					al.add(cbSteam.getText());
 				if (cbGoG.isSelected())
-					pw.println(cbGoG.getText());
+					al.add(cbGoG.getText());
 				if (cbOrigin.isSelected())
-					pw.println(cbOrigin.getText());
+					al.add(cbOrigin.getText());
 				if (cbDiscord.isSelected())
-					pw.println(cbDiscord.getText());
+					al.add(cbDiscord.getText());
 				if (cbTwitch.isSelected())
-					pw.println(cbTwitch.getText());
+					al.add(cbTwitch.getText());
 				if (cbOthers.isSelected())
-					pw.println(cbOthers.getText());
-				 pw.close();
-				 System.exit(0);
-			
+					al.add(cbOthers.getText());
+				Collections.sort(al);
+				for (String ch : al)
+					pw.println(ch);
+				pw.close();
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					if (br.readLine() == null)
+					{
+						f.delete();
+						br.close();
+						System.exit(0);
+					}
+					else
+					{
+						setVisible(false);
+						new FenetrePrincipale();
+					}
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 			
 			
 			
