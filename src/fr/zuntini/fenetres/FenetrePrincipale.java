@@ -99,7 +99,7 @@ public class FenetrePrincipale extends JFrame {
 		toolBar.setSize(this.getSize());
 		this.getContentPane().add(toolBar, BorderLayout.NORTH);
 		
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\CDI16\\Desktop\\ProjetJava\\AggreGames\\ressources\\Logo.png"));
+		lblNewLabel.setIcon(new ImageIcon("ressources\\Logo.png"));
 		toolBar.add(lblNewLabel);
 	
 		// Icons + Menu Button
