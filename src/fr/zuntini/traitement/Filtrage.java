@@ -1,5 +1,17 @@
 package fr.zuntini.traitement;
 
-public class Filtrage {
+import java.util.ArrayList;
 
+public class Filtrage 
+{
+	
+	// Outils 
+	
+	
+	@SuppressWarnings("unused")
+	private String[] filetoArray (String s)
+	{
+		String [] a = s.split(",");
+		return a;
+	}
 }

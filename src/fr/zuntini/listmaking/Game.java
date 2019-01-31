@@ -1,8 +1,11 @@
 package fr.zuntini.listmaking;
 
 import java.io.File;
+import java.util.ArrayList;
 
-public class Game {
+import javax.swing.tree.DefaultMutableTreeNode;
+
+public class Game extends DefaultMutableTreeNode {
 
 	private int appid;
 	
@@ -11,14 +14,20 @@ public class Game {
 	private String comrun;
 	private String platform;
 	
-	public Game(int appid ,String name , String locgame, String comrun, String platform)
+	public Game(String chck[], String[] game)
 	{
-		this.name = name;
-		this.appid = appid;
-		this.locgame = locgame;
-		this.comrun = comrun;
-		this.platform = platform;
+		super(chck);
+		
+		
+		this.appid = Integer.parseInt(game[0]);
+		this.name = game[1];
+		this.locgame = game[2];
+		this.comrun = game[3];
+		this.platform = game[4];
 	}
+	
+
+	
 	
 	public int getAppid() {
 		return appid;
@@ -51,4 +60,18 @@ public class Game {
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name + " Plateforme : " + platform;
+	}
+	
 }

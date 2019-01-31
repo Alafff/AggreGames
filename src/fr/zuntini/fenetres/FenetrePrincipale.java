@@ -11,6 +11,7 @@ import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
 import fr.zuntini.factory.ButtonFactory;
+import fr.zuntini.listmaking.MakeList;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -18,6 +19,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -52,11 +55,13 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSearchbar;
-	private List firstList = new List();
-	private List list = new List();
+	
+	
 	//private Browser br = new Browser();
 	private JLabel lblNewLabel = new JLabel("");
 	private File f = new File ("params.txt");
+	private MakeList firstList = new MakeList(f, f);
+	private MakeList list = new MakeList(f , f);
 	/**
 	 * Launch the application.
 	 */
@@ -161,34 +166,34 @@ public class FenetrePrincipale extends JFrame {
 		{
 			public void keyPressed(KeyEvent arg0)
 			{
-				if (txtSearchbar.getText().equals("Search Bar"))
+		/*		if (txtSearchbar.getText().equals("Search Bar"))
 					txtSearchbar.setText("");
 			
 				list.removeAll();
 				if (!(txtSearchbar.getText().equals("Search Bar")))
 				{	
-					for (int j = 0;firstList.getItemCount() > j;j++)
+					for (int j = 0;firstList.getRowCount() > j;j++)
 					{
 						if (firstList.getItem(j).contains(txtSearchbar.getText()))
 							list.add(firstList.getItem(j));
 					}
 				}
-			}
+			*/}
 			public void keyReleased(KeyEvent arg0)
 			{
-				if (txtSearchbar.getText().equals("Search Bar"))
+		/*		if (txtSearchbar.getText().equals("Search Bar"))
 					txtSearchbar.setText("");
 			
 				list.removeAll();
 				if (!(txtSearchbar.getText().equals("Search Bar")))
 				{	
-					for (int j = 0;firstList.getItemCount() > j;j++)
+					for (int j = 0;firstList.getRowCount() > j;j++)
 					{
 						if (firstList.getItem(j).contains(txtSearchbar.getText()))
 							list.add(firstList.getItem(j));
 					}
 				}
-			}
+			*/}
 		});
 		LeftPanel.setLayout(new BorderLayout(0, 0));
 		
@@ -196,17 +201,38 @@ public class FenetrePrincipale extends JFrame {
 		txtSearchbar.setToolTipText("");
 		LeftPanel.add(txtSearchbar, BorderLayout.NORTH);
 		txtSearchbar.setColumns(10);
+		/*list.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("root") {
+				{
+					DefaultMutableTreeNode node_1;
+					node_1 = new DefaultMutableTreeNode("Steam");
+						node_1.add(new DefaultMutableTreeNode("Game1"));
+						node_1.add(new DefaultMutableTreeNode("Game2"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Discord");
+						node_1.add(new DefaultMutableTreeNode("Game 1"));
+						node_1.add(new DefaultMutableTreeNode("Game2"));
+						node_1.add(new DefaultMutableTreeNode("Game3"));
+					add(node_1);
+					node_1 = new DefaultMutableTreeNode("Epic FDP");
+						node_1.add(new DefaultMutableTreeNode("Game 1"));
+						node_1.add(new DefaultMutableTreeNode("Game 2"));
+						node_1.add(new DefaultMutableTreeNode("Game 3"));
+					add(node_1);
+				}
+			}
+		));*/
 		
 		
 		list.setPreferredSize(new Dimension(315, 200));
 		list.setMaximumSize(new Dimension(315, 200));
 		list.setSize(new Dimension(315, 200));
 		LeftPanel.add(list, BorderLayout.CENTER);
-		for (Integer i = 0;i < 100;i++)
+		/*for (Integer i = 0;i < 100;i++)
 		{
 			list.add(i.toString());
 			firstList.add(i.toString());
-		}
+		}*/
 		JPanel BottomPanel = new JPanel();
 		this.getContentPane().add(BottomPanel, BorderLayout.SOUTH);
 		

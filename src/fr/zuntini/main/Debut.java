@@ -40,18 +40,6 @@ public class Debut
 		}
 			
 	}
-		/*
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{	
-					FenetrePrincipale window = new FenetrePrincipale();
-				} catch (Exception e) {
-					System.out.println(e);
-				}
-			}
-		});*/
+	
 }
 
