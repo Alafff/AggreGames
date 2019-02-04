@@ -22,7 +22,7 @@ public class MakeList extends JTree {
 	private File fcat; //Categories / Platformes
 	private File flist; // List de jeux
 	private Map<String, DefaultMutableTreeNode> platform = new HashMap<>();
-	private Map<String, GameContainer> game = new HashMap<>();
+	private Map<String, Game> game = new HashMap<>();
 	
 
 	public MakeList(File cat, File listgame)

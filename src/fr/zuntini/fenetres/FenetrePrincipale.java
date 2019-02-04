@@ -1,12 +1,5 @@
 package fr.zuntini.fenetres;
 
-
-
-
-
-
-
-
 import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 

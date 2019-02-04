@@ -3,8 +3,13 @@ package fr.zuntini.factory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+
+import fr.external.code.WindowsRegistry;
+import fr.zuntini.platform.SteamPlat;
 
 public class ButtonFactory {
 
@@ -18,7 +23,16 @@ public class ButtonFactory {
 		jb.setBackground(Color.RED);
 		jb.setMinimumSize(new Dimension(calc, 700 ));
 		
-		
+		if (name.equals("Steam"))
+		{
+			jb.addActionListener(new ActionListener() 
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam")).execplat();
+				}
+			});
+		}
 		return jb;
 	}
 }

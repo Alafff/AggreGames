@@ -114,6 +114,7 @@ public class WindowsRegistry
   {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < array.length - 1; i++) {
+    	if ((char) array[i] != '"')
       result.append((char) array[i]);
     }
     return result.toString();
@@ -123,14 +124,11 @@ public class WindowsRegistry
   private static String testKey(int hive, String keyName, String valueName)
   {
     String s = null;
- 
-    if (hive == HKEY_CURRENT_USER) System.out.print("HKCU\\");
-    if (hive == HKEY_LOCAL_MACHINE) System.out.print("HKLM\\");
-    System.out.println(keyName);
-    System.out.println("  Reading: " + valueName);
- 
+
     try {
       s = getKeySz(hive, keyName, valueName);
+      String[] a = s.split(" %1");
+      s = a[0];
       System.out.println("    >>" + s + "<<");
       return s;
     }
@@ -141,10 +139,10 @@ public class WindowsRegistry
   }
  
   @SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
-  public static void main(String args[])
+  public String testKey2(String arg)
   {
-    
-   testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
-   
+    if (arg.equals("Steam"))
+   return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
+   return null;
   }
 }

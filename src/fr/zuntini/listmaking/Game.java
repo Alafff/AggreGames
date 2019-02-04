@@ -7,12 +7,13 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 public class Game extends DefaultMutableTreeNode {
 
-	private int appid;
-	
-	private String name;
-	private String locgame;
-	private String comrun;
-	private String platform;
+	private int appid; // Id of game
+	 
+	private String name; // Name of game
+	private String locgame; // path of game
+	private String comrun; // command to run it
+	private String platform; // platform of the game
+	private boolean installed; // is installed
 	
 	public Game(String chck[], String[] game)
 	{
@@ -68,6 +69,17 @@ public class Game extends DefaultMutableTreeNode {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public boolean isInstalled() {
+		return installed;
+	}
+
+	public void setInstalled(boolean installed) {
+		this.installed = installed;
+	}
+
+
+
 
 	@Override
 	public String toString() {
