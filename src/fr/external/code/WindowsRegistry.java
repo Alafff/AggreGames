@@ -124,10 +124,13 @@ public class WindowsRegistry
   private static String testKey(int hive, String keyName, String valueName)
   {
     String s = null;
-
+    String a[] = null;
     try {
       s = getKeySz(hive, keyName, valueName);
-      String[] a = s.split(" %1");
+     if (s.contains(" %"))
+    	 a = s.split(" %");
+     if (s.contains(","))
+    	a = s.split(",");
       s = a[0];
       System.out.println("    >>" + s + "<<");
       return s;
@@ -142,7 +145,9 @@ public class WindowsRegistry
   public String testKey2(String arg)
   {
     if (arg.equals("Steam"))
-   return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
+    	return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
+   if (arg.equals("Epic Store"))
+   		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon", "");
    return null;
   }
 }

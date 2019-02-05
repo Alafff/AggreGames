@@ -62,4 +62,9 @@ public abstract class Platform
 	public void setGlist(ArrayList<Game> glist) {
 		this.glist = glist;
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

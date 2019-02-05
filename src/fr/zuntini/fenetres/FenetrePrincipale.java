@@ -1,8 +1,8 @@
 package fr.zuntini.fenetres;
 
-import com.teamdev.jxbrowser.chromium.Browser;
+/*import com.teamdev.jxbrowser.chromium.Browser;
 import com.teamdev.jxbrowser.chromium.swing.BrowserView;
-
+*/
 import fr.zuntini.factory.ButtonFactory;
 import fr.zuntini.listmaking.MakeList;
 
