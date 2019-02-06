@@ -1,10 +1,12 @@
 package fr.zuntini.platform;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import fr.zuntini.listmaking.Game;
+import fr.zuntini.game.Game;
 
-public class EpicStorePlat extends Platform {
+public class EpicStorePlat extends Platform 
+{
 
 	public EpicStorePlat(String name, String path) {
 		super(name, path);
@@ -17,12 +19,10 @@ public class EpicStorePlat extends Platform {
 		return null;
 	}
 
-	@Override
-	public void LaunchGame() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
-	
+	@Override
+	public ArrayList<Game> ftmakelist(File rep) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

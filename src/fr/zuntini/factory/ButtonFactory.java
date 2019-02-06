@@ -30,7 +30,7 @@ public class ButtonFactory {
 				public void actionPerformed(ActionEvent e)
 				{
 				
-					new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam")).execplat();
+					new SteamPlat(new WindowsRegistry().testKey2("Steam")).execplat();
 				}
 			});
 		}

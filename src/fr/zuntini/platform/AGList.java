@@ -23,7 +23,15 @@ public class AGList
 	
 			return a;
 	}
-	
+	public void launchGame (String name , String Pl)
+	{
+		 for (int i = 0;i < pl.size(); i++)
+		 {
+			 if(pl.get(i).getName().equals(Pl))
+				 pl.get(i).LaunchGame(name);
+		 }
+			 
+	}
 	public void initialize()
 	{
 		

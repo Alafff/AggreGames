@@ -18,36 +18,41 @@ import fr.zuntini.platform.SteamPlat;
 
 public class Debut 
 {
-	private static File f ;
+	private static File params ;
 	private static BufferedReader br;
 	private static AGList agList = new AGList();
 	
 	public static void main(String[] args)
 	{
+		boolean test = true;
 		
-		try 
+		if (test)
 		{
-			f = new File("params.txt");
-			if (!f.exists())
-				f.createNewFile();
-			BufferedReader br;
-
-			br = new BufferedReader(new FileReader(f));
-
-			if ( br.readLine() != null)
-				new FenetrePrincipale();
-			else
-				/* LaunchWindow lw =*/  new LaunchWindow(f);
-			br.close();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();	
+			try 
+			{
+				params = new File("params.txt");
+				if (!params.exists())
+					params.createNewFile();
+				BufferedReader br;	
+				br = new BufferedReader(new FileReader(params));
+				
+				if ( br.readLine() != null)
+					new FenetrePrincipale();
+				else
+					/* LaunchWindow lw =*/  new LaunchWindow(params);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();	
+			}
 		}
-		agList.add(new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam")));
+		/*agList.add(new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam")));
 		agList.add(new EpicStorePlat("EpicStore", new WindowsRegistry().testKey2("Steam")));
-		System.out.println(agList.getPlatList());
-		//SteamPlat a = new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam"));
+		*/
+		//System.out.println(agList.getPlatList());
+		//SteamPlat a = new SteamPlat(new WindowsRegistry().testKey2("Steam"));
+	agList.launchGame("Beat Hazard", "Steam");
 		//SteamPlat a = new SteamPlat("Steam","D:\\Program Files (x86)\\Steam\\steam.exe" );
 		//a.execplat();;
 		

@@ -2,6 +2,8 @@ package fr.zuntini.listmaking;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import fr.zuntini.game.Game;
+
 public class GameContainer {
 
 	private Game g;

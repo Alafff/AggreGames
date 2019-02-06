@@ -73,7 +73,8 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() 
+	{
 
 		this.addWindowListener(new WindowAdapter() {
 			@Override

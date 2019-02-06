@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import fr.zuntini.listmaking.Game;
+import fr.zuntini.game.Game;
 
 //Initialize and Stock All Platforms used in the list of params
 public abstract class Platform 
@@ -19,10 +19,28 @@ public abstract class Platform
 	{
 		this.name = name;
 		this.path = path;
+		glist = new ArrayList<Game>();
 	}
-	
+	public abstract ArrayList<Game> ftmakelist(File rep); // Making list for first time 
 	public abstract ArrayList<Game> makelist(); // Get a list of all the games of the platform and send it back
-	public abstract  void LaunchGame();
+	
+	public void LaunchGame(String name)
+	{
+		for (int i = 0; i < glist.size(); i++) 
+		{
+	         Game g = glist.get(i);
+	         System.out.println("Nom fourni = "+ name + "Nom cherché : "+ g.getName());
+			 if(g.getName().equals(name))
+				try {
+					Runtime.getRuntime().exec(g.getComrun());
+				} catch (IOException e) {
+
+					System.err.println("Erreur commande de lancement de jeu invalide");
+					e.printStackTrace();
+				}
+			 
+		}
+	}
 	
 	public void execplat()
 	{

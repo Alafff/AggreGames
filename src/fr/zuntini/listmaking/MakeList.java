@@ -13,6 +13,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+import fr.zuntini.game.Game;
+
 public class MakeList extends JTree {
 
 	/**
