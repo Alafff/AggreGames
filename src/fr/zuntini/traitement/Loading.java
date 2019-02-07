@@ -10,7 +10,7 @@ import fr.zuntini.platform.*;
 public class Loading 
 {
 	
-	private void loading(File params)
+	public static void loading(File params)
 	{
 		Scanner sc;
 		try
@@ -20,17 +20,18 @@ public class Loading
 			while(sc.hasNextLine())
 			{
 				String a = sc.nextLine();	
-				String n;
-				AGList ag;
+				String n = null;
 				n = new WindowsRegistry().testKey2(a);
-				if (n.equals(null))
+				if (n == null)
 					{
 					//dosomeshit	
 					}
 				else
 				{
 					if (a.equals("Steam"))
-						ag.add(new SteamPlat(n));
+						AGList.add(new SteamPlat(n));
+					if (a.equals("Epic Store"))
+						AGList.add(new EpicStorePlat(n));
 				}
 			}
 		} catch (FileNotFoundException e) {

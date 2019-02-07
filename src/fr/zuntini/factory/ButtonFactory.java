@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import fr.external.code.WindowsRegistry;
+import fr.zuntini.platform.AGList;
 import fr.zuntini.platform.EpicStorePlat;
 import fr.zuntini.platform.SteamPlat;
 
@@ -23,27 +24,15 @@ public class ButtonFactory {
 		jb.setFont(new Font("Impact", Font.BOLD, 20));
 		jb.setBackground(Color.RED);
 		jb.setMinimumSize(new Dimension(calc, 700 ));
-		if (name.equals("Steam"))
+		
+		jb.addActionListener(new ActionListener() 
 		{
-			jb.addActionListener(new ActionListener() 
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-				
-					new SteamPlat(new WindowsRegistry().testKey2("Steam")).execplat();
-				}
-			});
-		}
-		else if (name.equals("Epic Store"))
-		{
-			jb.addActionListener(new ActionListener() 
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					new EpicStorePlat("Epic Store", new WindowsRegistry().testKey2("Epic Store")).execplat();
-				}
-			});
-		}
+			public void actionPerformed(ActionEvent e)
+			{	
+					AGList.getPlat(name).execplat();
+			}
+		});
+	
 		return jb;
 	}
 }

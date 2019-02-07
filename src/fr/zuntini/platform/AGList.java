@@ -3,7 +3,7 @@ package fr.zuntini.platform;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AGList 
+public class  AGList 
 {
 	private static ArrayList<Platform> pl;
 	
@@ -11,17 +11,19 @@ public class AGList
 	{
 		pl = new ArrayList<Platform>();
 	}
-	public void add(Platform p)
+	public static void add(Platform p)
 	{
 		pl.add(p);
 		
 	}
-	public ArrayList<String> getPlatList()
+	public static Platform getPlat(String name)
 	{
-		ArrayList<String> a = new ArrayList<String>();
-		pl.stream().forEach(Platform -> a.add(Platform.toString()));
-	
-			return a;
+		for (int i = 0;i < pl.size();i++)
+		{
+			if (pl.get(i).toString().equals(name))
+					return pl.get(i);
+		}
+		return null;
 	}
 	public void launchGame (String name , String Pl)
 	{

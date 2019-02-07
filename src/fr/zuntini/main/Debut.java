@@ -15,6 +15,7 @@ import fr.zuntini.fenetres.LaunchWindow;
 import fr.zuntini.platform.AGList;
 import fr.zuntini.platform.EpicStorePlat;
 import fr.zuntini.platform.SteamPlat;
+import fr.zuntini.traitement.Loading;
 
 public class Debut 
 {
@@ -37,7 +38,10 @@ public class Debut
 				br = new BufferedReader(new FileReader(params));
 				
 				if ( br.readLine() != null)
+				{
+					Loading.loading(params);
 					new FenetrePrincipale();
+				}
 				else
 					/* LaunchWindow lw =*/  new LaunchWindow(params);
 				br.close();
@@ -51,10 +55,7 @@ public class Debut
 		agList.add(new EpicStorePlat("EpicStore", new WindowsRegistry().testKey2("Steam")));
 		*/
 		//System.out.println(agList.getPlatList());
-		//SteamPlat a = new SteamPlat(new WindowsRegistry().testKey2("Steam"));
-	agList.launchGame("Beat Hazard", "Steam");
-		//SteamPlat a = new SteamPlat("Steam","D:\\Program Files (x86)\\Steam\\steam.exe" );
-		//a.execplat();;
+
 		
 	}
 	

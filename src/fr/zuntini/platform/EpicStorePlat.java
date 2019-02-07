@@ -8,8 +8,8 @@ import fr.zuntini.game.Game;
 public class EpicStorePlat extends Platform 
 {
 
-	public EpicStorePlat(String name, String path) {
-		super(name, path);
+	public EpicStorePlat(String path) {
+		super("Epic Store", path);
 		// TODO Auto-generated constructor stub
 	}
 
