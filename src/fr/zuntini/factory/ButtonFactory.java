@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import fr.external.code.WindowsRegistry;
+
 import fr.zuntini.platform.AGList;
-import fr.zuntini.platform.EpicStorePlat;
-import fr.zuntini.platform.SteamPlat;
+
 
 public class ButtonFactory {
 

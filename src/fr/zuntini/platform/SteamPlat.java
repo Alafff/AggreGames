@@ -1,17 +1,17 @@
 package fr.zuntini.platform;
 
-import java.io.BufferedReader;
+import fr.zuntini.game.Game;
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import fr.zuntini.game.Game;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+
 
 public class SteamPlat extends Platform {
 	
@@ -56,7 +56,6 @@ public class SteamPlat extends Platform {
 		String[] details = new String[5];
 		Scanner sc;
 		String str; // Temp str
-		boolean end = false;
 		//System.out.println(rep.toString());
 		try 
 		{

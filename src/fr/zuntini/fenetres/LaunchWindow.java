@@ -1,10 +1,10 @@
 package fr.zuntini.fenetres;
 
 
+import fr.zuntini.factory.cbFactory;
 
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,34 +13,47 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
+import java.awt.BorderLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.awt.Rectangle;
 
 public class LaunchWindow extends JFrame{
 
-	private int width = 609;
-	private int height = 239;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int width = 479;
+	private int height = 390;
 	private File f;
 	private PrintWriter pw;
-	private ArrayList<String> al = new ArrayList<String>();
-
+	private String[] al = new String []{"Battle.net","Bethesda","Discord Store","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Twitch","Uplay"		
+	};
+	private ArrayList<JCheckBox> cbList = new ArrayList<JCheckBox>();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -94,99 +107,97 @@ public class LaunchWindow extends JFrame{
 	private void initialize() {
 		
 		this.setTitle("AggreGames First time");
-		this.setBounds(100, 100, 450, 300);
+		this.setBounds(100, 100, 500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(610, 269);
+		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
-		this.setResizable(true);
-		JPanel UpPanel = new JPanel();
-		UpPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-		UpPanel.setPreferredSize(new Dimension(609, 40));
-		UpPanel.setMinimumSize(new Dimension(width, 50));
-		this.getContentPane().add(UpPanel, BorderLayout.NORTH);
+		this.setResizable(false);
+		JPanel upPanel = new JPanel();
+		upPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+		upPanel.setPreferredSize(new Dimension(609, 40));
+		upPanel.setMinimumSize(new Dimension(width, 50));
+		this.getContentPane().add(upPanel, BorderLayout.NORTH);
 		GridBagLayout gbl_UpPanel = new GridBagLayout();
 		gbl_UpPanel.columnWidths = new int[]{161, 81, 0, 0};
 		gbl_UpPanel.rowHeights = new int[]{14, 0, 0};
 		gbl_UpPanel.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_UpPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		UpPanel.setLayout(gbl_UpPanel);
+		upPanel.setLayout(gbl_UpPanel);
 		
-		JLabel lblPltfmUsd = new JLabel("Prefered Platforms used : (The ones you wanna see in your top window)");
+		JLabel lblPltfmUsd = new JLabel("    Which platforms do you want to use :   (Red mean Platform is not detected)");
+		lblPltfmUsd.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblPltfmUsd = new GridBagConstraints();
-		gbc_lblPltfmUsd.gridwidth = 2;
+		gbc_lblPltfmUsd.gridwidth = 3;
 		gbc_lblPltfmUsd.insets = new Insets(0, 0, 0, 5);
 		gbc_lblPltfmUsd.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblPltfmUsd.gridx = 0;
 		gbc_lblPltfmUsd.gridy = 0;
-		UpPanel.add(lblPltfmUsd, gbc_lblPltfmUsd);
+		upPanel.add(lblPltfmUsd, gbc_lblPltfmUsd);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBorder(new LineBorder(new Color(0, 0, 0)));
-		separator.setBackground(Color.CYAN);
-		separator.setOpaque(true);
-		separator.setRequestFocusEnabled(false);
-		separator.setSize(new Dimension(width, 5));
-		separator.setMinimumSize(new Dimension(409, 5));
-		separator.setAlignmentY(Component.BOTTOM_ALIGNMENT);
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.gridwidth = 3;
-		gbc_separator.gridx = 0;
-		gbc_separator.gridy = 1;
-		UpPanel.add(separator, gbc_separator);
+	
 		
-		JPanel MainPanel = new JPanel();
-		this.getContentPane().add(MainPanel, BorderLayout.CENTER);
-		MainPanel.setLayout(null);
 		
-		JCheckBox cbSteam = new JCheckBox("Steam");
-		cbSteam.setBounds(30, 60, 117, 23);
-		MainPanel.add(cbSteam);
 		
-		JCheckBox cbGoG = new JCheckBox("GoG Galaxy");
-		cbGoG.setBounds(184, 34, 89, 23);
-		MainPanel.add(cbGoG);
+		JPanel mainPanel = new JPanel();
+		this.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		
-		JCheckBox cbOrigin = new JCheckBox("Origin");
-		cbOrigin.setBounds(342, 34, 77, 23);
-		MainPanel.add(cbOrigin);
+	
+		GridBagLayout gbl_MainPanel = new GridBagLayout();
+		mainPanel.setLayout(gbl_MainPanel);
 		
-		JCheckBox cbDiscord = new JCheckBox("Discord Store");
-		cbDiscord.setBounds(30, 88, 117, 23);
-		MainPanel.add(cbDiscord);
 		
-		JCheckBox cbTwitch = new JCheckBox("Twitch");
-		cbTwitch.setBounds(184, 60, 89, 23);
-		MainPanel.add(cbTwitch);
 		
-		JCheckBox cbOthers = new JCheckBox("Others");
-		cbOthers.setBounds(342, 60, 77, 23);
-		MainPanel.add(cbOthers);
 		
-		JCheckBox cbEpicStore = new JCheckBox("Epic Store");
-		cbEpicStore.setBounds(30, 34, 117, 23);
-		MainPanel.add(cbEpicStore);
+		Dimension d = new Dimension(117,23);
+		int i = 0;
+		int x = 0;
+		int y = 0;
+		for (String c : al)
+		{
+			
+			
+			cbList.add(cbFactory.getcheckbox(c, d));
+			GridBagConstraints gbs = new GridBagConstraints();
+			gbs.gridx = x++;
+			gbs.gridy = y;
+			
+			if (x >= 3)
+			{
+				//gbs.insets = new Insets(10,0,5,5);
+				gbs.weighty = 0.1;
+				x = 0;
+				y += 1;
+			}
+			mainPanel.add(cbList.get(i), gbs);
+			
+			i++;
+		}
 		
+	
+		
+		JPanel downpanel = new JPanel();
+		downpanel.setSize(new Dimension(width, 50));
+		downpanel.setBorder(BorderFactory.createEmptyBorder(25, 0, 0, 0));
+
+		downpanel.setBounds(new Rectangle(0, 0, width, 50));
+		getContentPane().add(downpanel, BorderLayout.SOUTH);
+		
+	
 		JButton btnLaunch = new JButton("Launch");
+		downpanel.add(btnLaunch);
 		btnLaunch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if (cbEpicStore.isSelected())
-					al.add(cbEpicStore.getText());
-				if (cbSteam.isSelected())
-					al.add(cbSteam.getText());
-				if (cbGoG.isSelected())
-					al.add(cbGoG.getText());
-				if (cbOrigin.isSelected())
-					al.add(cbOrigin.getText());
-				if (cbDiscord.isSelected())
-					al.add(cbDiscord.getText());
-				if (cbTwitch.isSelected())
-					al.add(cbTwitch.getText());
-				if (cbOthers.isSelected())
-					al.add(cbOthers.getText());
-				Collections.sort(al);
-				for (String ch : al)
-					pw.println(ch);
+				for (JCheckBox a : cbList)
+				{
+					if (a.isSelected())
+						for (String s : al) //Suppress HTML Color
+						{
+							if (a.getText().contains(s))
+								pw.println(s);
+						}
+						
+				}
 				pw.close();
 				try {
 					BufferedReader br = new BufferedReader(new FileReader(f));
@@ -200,29 +211,21 @@ public class LaunchWindow extends JFrame{
 					{
 						setVisible(false);
 						new FenetrePrincipale();
+						
 					}
 					br.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		
-			
-			
-			
-			
 			}
 		});
-		btnLaunch.setBounds(86, 140, 89, 23);
-		MainPanel.add(btnLaunch);
-		
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnQuitter.setBounds(259, 140, 89, 23);
-		MainPanel.add(btnQuitter);
+		downpanel.add(btnQuitter);
 	}
 }

@@ -1,11 +1,15 @@
 package fr.zuntini.game;
 
-import java.io.File;
-import java.util.ArrayList;
+
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class Game extends DefaultMutableTreeNode {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private int appid; // Id of game
 	 
@@ -95,7 +99,7 @@ public class Game extends DefaultMutableTreeNode {
 
 	@Override
 	public String toString() {
-		return "Name =" +name + " Plateforme : " + platform + " Comrun = "+ comrun + " Appid = "+ appid;
+		return "Name = " +name + " Plateforme : " + platform + " Comrun = "+ comrun + " Appid = "+ appid;
 	}
 	
 }

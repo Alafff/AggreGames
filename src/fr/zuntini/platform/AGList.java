@@ -1,7 +1,7 @@
 package fr.zuntini.platform;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class  AGList 
 {
@@ -10,6 +10,7 @@ public class  AGList
 	public AGList ()
 	{
 		pl = new ArrayList<Platform>();
+		
 	}
 	public static void add(Platform p)
 	{

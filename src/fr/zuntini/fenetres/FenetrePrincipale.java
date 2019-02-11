@@ -5,28 +5,23 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 */
 import fr.zuntini.factory.ButtonFactory;
 import fr.zuntini.listmaking.MakeList;
+import fr.zuntini.traitement.Refresh;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 import java.awt.GridLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.BorderLayout;
-import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.List;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ComponentAdapter;
@@ -34,8 +29,7 @@ import java.awt.event.ComponentEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 import java.util.Scanner;
 
 
@@ -53,7 +47,7 @@ public class FenetrePrincipale extends JFrame {
 	//private Browser br = new Browser();
 	private JLabel lblNewLabel = new JLabel("");
 	private File f = new File ("params.txt");
-	private MakeList firstList = new MakeList(f, f);
+//	private MakeList firstList = new MakeList(f, f);
 	private MakeList list = new MakeList(f , f);
 	/**
 	 * Launch the application.
@@ -75,7 +69,7 @@ public class FenetrePrincipale extends JFrame {
 	 */
 	private void initialize() 
 	{
-
+		Refresh a = new Refresh();
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -108,6 +102,7 @@ public class FenetrePrincipale extends JFrame {
 		toolBar.add(UpPanel);
 		
 		int numLines = 2;
+		int numCol = 1;
 		Scanner sc;
 		try {
 			sc = new Scanner (f);
@@ -116,11 +111,14 @@ public class FenetrePrincipale extends JFrame {
 				numLines++;
 				sc.nextLine();
 			}
+			numCol  += numLines / 5;
+			if (numLines > 5)
+				numLines = 5;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		UpPanel.setLayout(new GridLayout(0, numLines, 0, 0));
+		UpPanel.setLayout(new GridLayout(numCol, numLines, 0, 0));
 		
 		// Options button , always visible
 		UpPanel.add(ButtonFactory.getButton("Options",numLines, toolBar.getSize()));

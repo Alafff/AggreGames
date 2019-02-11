@@ -21,7 +21,7 @@ public class Loading
 			{
 				String a = sc.nextLine();	
 				String n = null;
-				n = new WindowsRegistry().testKey2(a);
+				n = WindowsRegistry.testKey2(a);
 				if (n == null)
 					{
 					//dosomeshit	

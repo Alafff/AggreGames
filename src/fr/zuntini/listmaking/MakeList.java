@@ -1,19 +1,20 @@
 package fr.zuntini.listmaking;
 
+//import fr.zuntini.game.Game;
+
 import java.awt.Dimension;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Collection;
+
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-import javax.swing.JList;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import fr.zuntini.game.Game;
+
 
 public class MakeList extends JTree {
 
@@ -21,17 +22,17 @@ public class MakeList extends JTree {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private File fcat; //Categories / Platformes
-	private File flist; // List de jeux
+//	private File fcat; //Categories / Platformes
+//	private File flist; // List de jeux
 	private Map<String, DefaultMutableTreeNode> platform = new HashMap<>();
-	private Map<String, Game> game = new HashMap<>();
+//	private Map<String, Game> game = new HashMap<>();
 	
 
 	public MakeList(File cat, File listgame)
 	{
 		super();
-		this.fcat = cat;
-		this.flist = listgame;
+//		this.fcat = cat;
+//		this.flist = listgame;
 		
 		createNodes();
 		
@@ -51,6 +52,11 @@ public class MakeList extends JTree {
 		str[1] = checkgame(game[4]);
 */
 		this.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("root") {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			{
 				DefaultMutableTreeNode node_1;
 				node_1 = new DefaultMutableTreeNode("Steam");

@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
-import javax.swing.JOptionPane;
+
  
 /**
  * Very evil class to read from the Windows registry by breaking into the WindowsPreference
@@ -35,7 +35,8 @@ public class WindowsRegistry
   private static final int ERROR_SUCCESS = 0;
   private static final int ERROR_FILE_NOT_FOUND = 2;
  
-  public static String getKeySz(int hive, String keyName, String valueName)
+  @SuppressWarnings("unchecked")
+public static String getKeySz(int hive, String keyName, String valueName)
           throws BackingStoreException
   {
     if (hive != HKEY_CURRENT_USER && hive != HKEY_LOCAL_MACHINE) {
@@ -120,19 +121,20 @@ public class WindowsRegistry
     return result.toString();
   }
  
-  @SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
+  //@SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
   private static String testKey(int hive, String keyName, String valueName)
   {
     String s = null;
     String a[] = null;
     try {
       s = getKeySz(hive, keyName, valueName);
+    //  System.out.println("s ============="+ s);
      if (s.contains(" %"))
     	 a = s.split(" %");
      if (s.contains(","))
     	a = s.split(",");
       s = a[0];
-      System.out.println("    >>" + s + "<<");
+  //    System.out.println("    >>" + s + "<<");
       return s;
     }
     catch (BackingStoreException e) {
@@ -141,8 +143,8 @@ public class WindowsRegistry
     return s;
   }
  
-  @SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
-  public String testKey2(String arg)
+  //@SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
+  public static String testKey2(String arg)
   {
     if (arg.equals("Steam"))
     	return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");

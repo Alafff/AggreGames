@@ -1,7 +1,17 @@
 Coder Jeux
+
+
+Library 4 step  : Detect Platform , Launch Platform, Detect Game , Launch Game
+
+Coder Steam 1-4
+Coder EpicStore 1-2
 Coder GogPlat
 Coder Origin Plat
 Coder Discord Plat
+Coder BattleNetLibrary
+Coder BethesdayLibrary
+Coder Twitch Library
+Coder Uplay Library
 Coder Other Plat
 
 Coder Options
@@ -10,3 +20,4 @@ Coder Add a game
 Coder JTree
 
 Coder XML FILES !!!
+

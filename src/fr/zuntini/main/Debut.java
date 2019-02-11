@@ -6,8 +6,6 @@ import java.io.File;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import fr.external.code.WindowsRegistry;
 import fr.zuntini.fenetres.FenetrePrincipale;
@@ -20,18 +18,19 @@ import fr.zuntini.traitement.Loading;
 public class Debut 
 {
 	private static File params ;
-	private static BufferedReader br;
 	private static AGList agList = new AGList();
 	
 	public static void main(String[] args)
 	{
-		boolean test = true;
+		boolean normal = true;
 		
-		if (test)
+		params = new File("params.txt");
+		
+		if (normal)
 		{
 			try 
 			{
-				params = new File("params.txt");
+				
 				if (!params.exists())
 					params.createNewFile();
 				BufferedReader br;	
@@ -39,6 +38,7 @@ public class Debut
 				
 				if ( br.readLine() != null)
 				{
+				
 					Loading.loading(params);
 					new FenetrePrincipale();
 				}
@@ -51,9 +51,11 @@ public class Debut
 				e.printStackTrace();	
 			}
 		}
-		/*agList.add(new SteamPlat("Steam", new WindowsRegistry().testKey2("Steam")));
-		agList.add(new EpicStorePlat("EpicStore", new WindowsRegistry().testKey2("Steam")));
-		*/
+		else
+			new LaunchWindow(params);
+		//AGList.add(new SteamPlat(WindowsRegistry.testKey2("Steam")));
+		//AGList.add(new EpicStorePlat(WindowsRegistry.testKey2("Steam")));
+		
 		//System.out.println(agList.getPlatList());
 
 		
