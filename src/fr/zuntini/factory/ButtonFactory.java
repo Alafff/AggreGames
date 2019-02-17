@@ -28,7 +28,8 @@ public class ButtonFactory {
 		{
 			public void actionPerformed(ActionEvent e)
 			{	
-					AGList.getPlat(name).execplat();
+				System.out.println(name);
+				AGList.getPlat(name).execplat();
 			}
 		});
 	

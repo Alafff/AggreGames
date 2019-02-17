@@ -44,7 +44,9 @@ public abstract class Platform
 	
 	public void execplat()
 	{
+		
 		try {
+			System.out.println("Fichier =    " +this.path);
 			Desktop.getDesktop().open( new File(this.path));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

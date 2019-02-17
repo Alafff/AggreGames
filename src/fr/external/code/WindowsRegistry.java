@@ -148,8 +148,10 @@ public static String getKeySz(int hive, String keyName, String valueName)
   {
     if (arg.equals("Steam"))
     	return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
-   if (arg.equals("Epic Store"))
+    if (arg.equals("Epic Store"))
    		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon", "");
+    if (arg.equals("Origin"))
+   		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\eadm\\shell\\open\\command", "");
    return null;
   }
 }

@@ -22,10 +22,10 @@ public class Debut
 	
 	public static void main(String[] args)
 	{
-		boolean normal = true;
+		boolean normal = false;
 		
-		params = new File("params.txt");
-		
+		params = AGList.getParams();
+		System.out.println(params);
 		if (normal)
 		{
 			try 
@@ -39,11 +39,11 @@ public class Debut
 				if ( br.readLine() != null)
 				{
 				
-					Loading.loading(params);
+					Loading.loading();
 					new FenetrePrincipale();
 				}
 				else
-					/* LaunchWindow lw =*/  new LaunchWindow(params);
+					/* LaunchWindow lw =*/  new LaunchWindow();
 				br.close();
 			} 
 			catch (IOException e) 
@@ -52,7 +52,7 @@ public class Debut
 			}
 		}
 		else
-			new LaunchWindow(params);
+			new LaunchWindow();
 		//AGList.add(new SteamPlat(WindowsRegistry.testKey2("Steam")));
 		//AGList.add(new EpicStorePlat(WindowsRegistry.testKey2("Steam")));
 		

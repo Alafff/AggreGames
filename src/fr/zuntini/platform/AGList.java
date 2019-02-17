@@ -1,15 +1,20 @@
 package fr.zuntini.platform;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
 public class  AGList 
 {
+	private static File params ;
+	
 	private static ArrayList<Platform> pl;
+	
 	
 	public AGList ()
 	{
 		pl = new ArrayList<Platform>();
+		params = new File("params.txt");
 		
 	}
 	public static void add(Platform p)
@@ -23,6 +28,7 @@ public class  AGList
 		{
 			if (pl.get(i).toString().equals(name))
 					return pl.get(i);
+			
 		}
 		return null;
 	}
@@ -39,4 +45,8 @@ public class  AGList
 	{
 		
 	}
+	public static File getParams() {
+		return params;
+	}
+	
 }

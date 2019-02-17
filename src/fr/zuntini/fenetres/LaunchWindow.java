@@ -2,9 +2,8 @@ package fr.zuntini.fenetres;
 
 
 import fr.zuntini.factory.cbFactory;
-
-
-
+import fr.zuntini.platform.AGList;
+import fr.zuntini.traitement.Loading;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -73,9 +72,10 @@ public class LaunchWindow extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public LaunchWindow(File f) {
+	public LaunchWindow() {
 		super();
-		this.f = f;
+		this.f = AGList.getParams();
+		System.out.println(f);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -210,6 +210,7 @@ public class LaunchWindow extends JFrame{
 					else
 					{
 						setVisible(false);
+						Loading.loading();
 						new FenetrePrincipale();
 						
 					}

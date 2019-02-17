@@ -13,7 +13,8 @@ import java.util.Scanner;
 
 
 
-public class SteamPlat extends Platform {
+public class SteamPlat extends Platform 
+{
 	
 	
 
@@ -27,7 +28,7 @@ public class SteamPlat extends Platform {
 		String[] a = this.path.split("steam.exe");
 		gfolder = new File((a[0] + "steamapps\\"));
 		
-		File[] f = gfolder.listFiles();
+		gfolder.listFiles();
 		ftmakelist(gfolder);
 		
 	}
@@ -35,12 +36,18 @@ public class SteamPlat extends Platform {
 	//First time making list
 	public ArrayList<Game> ftmakelist(File rep) 
 	{
+		Game control;
+		
 		
 		File[] f = rep.listFiles();
 		for (int i = 0;i < f.length;i++)
 		{
 			if (f[i].toString().contains("appmanifest"))
-				glist.add(ftaddGame(f[i]));
+			{
+				control = ftaddGame(f[i]);
+				if (control != null)
+					glist.add(control);
+			}
 			if (f[i].toString().contains("library"))
 				recursivelib(f[i]);
 		}
@@ -75,8 +82,11 @@ public class SteamPlat extends Platform {
 		}
 		details[3] =(path + " -applaunch "+ details[0]);
 		details[4] = "Steam";
-		g = new Game(details);
-		System.out.println(g.toString());
+		if (details[0] != null)
+		{
+			g = new Game(details);
+			System.out.println(g.toString());
+		}
 		return g;
 	}
 	
@@ -135,6 +145,7 @@ public class SteamPlat extends Platform {
 			}
 			return s;
 		}
+	
 	@Override
 	public ArrayList<Game> makelist() {
 		// TODO Auto-generated method stub

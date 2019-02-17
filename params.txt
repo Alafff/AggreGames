@@ -1,4 +1,3 @@
 Epic Store
-GoG Galaxy
+Origin
 Steam
-Twitch

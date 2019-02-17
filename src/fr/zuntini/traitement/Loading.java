@@ -10,12 +10,12 @@ import fr.zuntini.platform.*;
 public class Loading 
 {
 	
-	public static void loading(File params)
+	public static void loading()
 	{
 		Scanner sc;
 		try
 		{
-			sc = new Scanner (params);
+			sc = new Scanner (AGList.getParams());
 	
 			while(sc.hasNextLine())
 			{
@@ -32,6 +32,8 @@ public class Loading
 						AGList.add(new SteamPlat(n));
 					if (a.equals("Epic Store"))
 						AGList.add(new EpicStorePlat(n));
+					if (a.equals("Origin"))
+						AGList.add(new OriginPlat(n));
 				}
 			}
 		} catch (FileNotFoundException e) {
