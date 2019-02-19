@@ -1,7 +1,8 @@
 package fr.zuntini.fenetres;
 
 
-import fr.zuntini.factory.cbFactory;
+import fr.zuntini.factory.CbFactory;
+import fr.zuntini.factory.Pfactory;
 import fr.zuntini.platform.AGList;
 import fr.zuntini.traitement.Loading;
 
@@ -12,7 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import java.awt.Dimension;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
@@ -34,6 +36,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Rectangle;
@@ -50,7 +53,7 @@ public class LaunchWindow extends JFrame{
 	private PrintWriter pw;
 	private String[] al = new String []{"Battle.net","Bethesda","Discord Store","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Twitch","Uplay"		
 	};
-	private ArrayList<JCheckBox> cbList = new ArrayList<JCheckBox>();
+	private ArrayList<CbFactory> cbList = new ArrayList<CbFactory>();
 	
 	
 	/**
@@ -156,12 +159,12 @@ public class LaunchWindow extends JFrame{
 		{
 			
 			
-			cbList.add(cbFactory.getcheckbox(c, d));
+			cbList.add(new CbFactory(c, d));
 			GridBagConstraints gbs = new GridBagConstraints();
 			gbs.gridx = x++;
 			gbs.gridy = y;
 			
-			if (x >= 3)
+			if (x > 2)
 			{
 				//gbs.insets = new Insets(10,0,5,5);
 				gbs.weighty = 0.1;
@@ -209,6 +212,11 @@ public class LaunchWindow extends JFrame{
 					}
 					else
 					{
+					
+									Resolve_issue rgft = new Resolve_issue(cbList);
+				    
+					
+				
 						setVisible(false);
 						Loading.loading();
 						new FenetrePrincipale();
@@ -229,4 +237,6 @@ public class LaunchWindow extends JFrame{
 		});
 		downpanel.add(btnQuitter);
 	}
+	
+	
 }

@@ -5,6 +5,7 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 */
 import fr.zuntini.factory.ButtonFactory;
 import fr.zuntini.listmaking.MakeList;
+import fr.zuntini.platform.AGList;
 import fr.zuntini.traitement.Refresh;
 
 import javax.swing.JLabel;
@@ -46,7 +47,7 @@ public class FenetrePrincipale extends JFrame {
 	
 	//private Browser br = new Browser();
 	private JLabel lblNewLabel = new JLabel("");
-	private File f = new File ("params.txt");
+	private File f = AGList.getParams();
 //	private MakeList firstList = new MakeList(f, f);
 	private MakeList list = new MakeList(f , f);
 	/**

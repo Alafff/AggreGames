@@ -151,4 +151,10 @@ public class SteamPlat extends Platform
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String getinstallerlink() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

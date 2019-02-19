@@ -23,13 +23,14 @@ public abstract class Platform
 	}
 	public abstract ArrayList<Game> ftmakelist(File rep); // Making list for first time 
 	public abstract ArrayList<Game> makelist(); // Get a list of all the games of the platform and send it back
+	public abstract String getinstallerlink();
 	
 	public void LaunchGame(String name)
 	{
 		for (int i = 0; i < glist.size(); i++) 
 		{
 	         Game g = glist.get(i);
-	         System.out.println("Nom fourni = "+ name + "Nom cherché : "+ g.getName());
+	         System.out.println("Nom fourni = "+ name + "Nom cherchï¿½ : "+ g.getName());
 			 if(g.getName().equals(name))
 				try {
 					Runtime.getRuntime().exec(g.getComrun());

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT plateform (nom , registrypath, downloadpath)>
+<!ELEMENT game (nom, plateform , launchcom)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT registrypath (#PCDATA)>
+<!ELEMENT launchcom (#PCDATA)>
+<!ELEMENT downloadpath (#PCDATA)>

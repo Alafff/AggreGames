@@ -4,7 +4,7 @@
 package fr.external.ExempleOfCode;
 
 /**
- * @author Alafff
+ * @author Not me
  *
  */
 public class Exemple {
