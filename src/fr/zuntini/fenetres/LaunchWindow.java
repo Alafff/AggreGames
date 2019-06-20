@@ -2,7 +2,7 @@ package fr.zuntini.fenetres;
 
 
 import fr.zuntini.factory.CbFactory;
-import fr.zuntini.factory.Pfactory;
+import fr.zuntini.factory.PlatFindFactory;
 import fr.zuntini.platform.AGList;
 import fr.zuntini.traitement.Loading;
 
@@ -53,7 +53,7 @@ public class LaunchWindow extends JFrame{
 	private PrintWriter pw;
 	private String[] al = new String []{"Battle.net","Bethesda","Discord Store","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Twitch","Uplay"		
 	};
-	private ArrayList<CbFactory> cbList = new ArrayList<CbFactory>();
+	private ArrayList<JCheckBox> cbList = new ArrayList<JCheckBox>();
 	
 	
 	/**
@@ -159,7 +159,7 @@ public class LaunchWindow extends JFrame{
 		{
 			
 			
-			cbList.add(new CbFactory(c, d));
+			cbList.add(CbFactory.getcheckbox(c, d));
 			GridBagConstraints gbs = new GridBagConstraints();
 			gbs.gridx = x++;
 			gbs.gridy = y;
@@ -213,7 +213,9 @@ public class LaunchWindow extends JFrame{
 					else
 					{
 					
-									Resolve_issue rgft = new Resolve_issue(cbList);
+								
+						
+						new InstallPlatform(cbList);
 				    
 					
 				

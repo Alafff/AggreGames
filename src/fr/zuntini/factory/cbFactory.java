@@ -6,7 +6,7 @@ import javax.swing.JCheckBox;
 
 import fr.external.code.WindowsRegistry;
 
-public class cbFactory {
+public class CbFactory {
 
 	private static String redcolor = "<html><font color=\"red\">";
 	private static String greencolor = "<html><font color=\"green\">";

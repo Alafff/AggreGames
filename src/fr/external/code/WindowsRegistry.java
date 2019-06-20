@@ -17,7 +17,7 @@ import java.util.prefs.Preferences;
  * @author David Croft (<a href="http://www.davidc.net">www.davidc.net</a>)
  * @version $Id: WindowsRegistry.java 285 2009-06-18 17:48:28Z david $
  */
-@SuppressWarnings({"HardCodedStringLiteral", "StringConcatenation"})
+//@SuppressWarnings({"HardCodedStringLiteral", "StringConcatenation"})
 public class WindowsRegistry
 {
   /* Windows hives */

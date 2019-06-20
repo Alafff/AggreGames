@@ -25,8 +25,7 @@ public class Debut
 		boolean normal = false;
 		
 		params = AGList.getParams();
-		System.out.println(params);
-		if (normal)
+		if (!normal)
 		{
 			try 
 			{

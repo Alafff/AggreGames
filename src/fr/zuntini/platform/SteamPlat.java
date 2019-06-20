@@ -80,7 +80,7 @@ public class SteamPlat extends Platform
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		details[3] =(path + " -applaunch "+ details[0]);
+		details[3] =("steam://rungameid/"+ details[0]);
 		details[4] = "Steam";
 		if (details[0] != null)
 		{
