@@ -11,7 +11,7 @@ public class OriginPlat extends Platform
 	public OriginPlat(String path) 
 	{
 		super("Origin", path);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class OriginPlat extends Platform
 
 	
 	public void LaunchGame() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -32,13 +32,13 @@ public class OriginPlat extends Platform
 	@Override
 	public ArrayList<Game> ftmakelist(File rep) 
 	{
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public String getinstallerlink() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

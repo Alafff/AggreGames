@@ -116,7 +116,7 @@ public class FenetrePrincipale extends JFrame {
 			if (numLines > 5)
 				numLines = 5;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}	
 		UpPanel.setLayout(new GridLayout(numCol, numLines, 0, 0));
@@ -132,7 +132,7 @@ public class FenetrePrincipale extends JFrame {
 				UpPanel.add(ButtonFactory.getButton(sc.nextLine(), numLines, toolBar.getSize()));
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		// Add a game Button

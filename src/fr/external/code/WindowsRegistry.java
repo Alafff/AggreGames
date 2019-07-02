@@ -35,7 +35,7 @@ public class WindowsRegistry
   private static final int ERROR_SUCCESS = 0;
   private static final int ERROR_FILE_NOT_FOUND = 2;
  
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
 public static String getKeySz(int hive, String keyName, String valueName)
           throws BackingStoreException
   {
@@ -120,7 +120,7 @@ public static String getKeySz(int hive, String keyName, String valueName)
     }
     return result.toString();
   }
- 
+ //Here begin my part
   //@SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
   private static String testKey(int hive, String keyName, String valueName)
   {
@@ -128,7 +128,8 @@ public static String getKeySz(int hive, String keyName, String valueName)
     String a[] = null;
     try {
       s = getKeySz(hive, keyName, valueName);
-    //  System.out.println("s ============="+ s);
+      //a[0] = s;
+      System.out.println("s ============="+ s);
      if (s.contains(" %"))
     	 a = s.split(" %");
      if (s.contains(","))
@@ -152,6 +153,8 @@ public static String getKeySz(int hive, String keyName, String valueName)
    		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon", "");
     if (arg.equals("Origin"))
    		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\eadm\\shell\\open\\command", "");
+    if (arg.equals("My.com"))
+    	return testKey(HKEY_CURRENT_USER, "Software\\Classes\\mailrugames\\DefaultIcon", "");
    return null;
   }
 }

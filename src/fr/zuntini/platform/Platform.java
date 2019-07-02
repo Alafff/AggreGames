@@ -40,7 +40,7 @@ public abstract class Platform
 					if (Desktop.isDesktopSupported()) 
 					    Desktop.getDesktop().browse(game);
 				} catch (URISyntaxException | IOException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			 }
@@ -54,7 +54,7 @@ public abstract class Platform
 			System.out.println("Fichier =    " +this.path);
 			Desktop.getDesktop().open( new File(this.path));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

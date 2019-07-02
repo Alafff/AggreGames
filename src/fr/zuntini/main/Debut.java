@@ -20,9 +20,11 @@ public class Debut
 	private static File params ;
 	private static AGList agList = new AGList();
 	
+	
 	public static void main(String[] args)
 	{
-		boolean normal = false;
+		System.out.println(WindowsRegistry.testKey2("Origin"));
+	/*	boolean normal = false;
 		
 		params = AGList.getParams();
 		if (!normal)
@@ -42,7 +44,9 @@ public class Debut
 					new FenetrePrincipale();
 				}
 				else
-					/* LaunchWindow lw =*/  new LaunchWindow();
+					// LaunchWindow lw =
+					   new LaunchWindow();
+					 
 				br.close();
 			} 
 			catch (IOException e) 
@@ -57,7 +61,7 @@ public class Debut
 		
 		//System.out.println(agList.getPlatList());
 
-		
+		*/
 	}
 	
 }

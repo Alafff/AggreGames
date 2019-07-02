@@ -14,7 +14,7 @@ public class  AGList
 	public AGList ()
 	{
 		pl = new ArrayList<Platform>();
-		params = new File("params.txt");
+		params = new File("/ressources/params.txt");
 		
 	}
 	public static void add(Platform p)
