@@ -7,12 +7,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import fr.external.code.WindowsRegistry;
 import fr.zuntini.fenetres.FenetrePrincipale;
 import fr.zuntini.fenetres.LaunchWindow;
 import fr.zuntini.platform.AGList;
-import fr.zuntini.platform.EpicStorePlat;
-import fr.zuntini.platform.SteamPlat;
 import fr.zuntini.traitement.Loading;
 
 public class Debut 
@@ -20,20 +17,22 @@ public class Debut
 	private static File params ;
 	private static AGList agList = new AGList();
 	
+	
 	public static void main(String[] args)
 	{
-		boolean normal = false;
+		boolean debug = false;
 		
 		params = AGList.getParams();
-		System.out.println(params);
-		if (normal)
+		if (!debug)
 		{
 			try 
 			{
 				
 				if (!params.exists())
+				{	
 					params.createNewFile();
-				BufferedReader br;	
+				}
+					BufferedReader br;	
 				br = new BufferedReader(new FileReader(params));
 				
 				if ( br.readLine() != null)
@@ -43,7 +42,9 @@ public class Debut
 					new FenetrePrincipale();
 				}
 				else
-					/* LaunchWindow lw =*/  new LaunchWindow();
+					// LaunchWindow lw =
+					   new LaunchWindow();
+					 
 				br.close();
 			} 
 			catch (IOException e) 
@@ -53,12 +54,6 @@ public class Debut
 		}
 		else
 			new LaunchWindow();
-		//AGList.add(new SteamPlat(WindowsRegistry.testKey2("Steam")));
-		//AGList.add(new EpicStorePlat(WindowsRegistry.testKey2("Steam")));
-		
-		//System.out.println(agList.getPlatList());
-
-		
 	}
 	
 }

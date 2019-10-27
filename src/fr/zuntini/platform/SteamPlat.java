@@ -54,7 +54,7 @@ public class SteamPlat extends Platform
 		//	System.out.println(p.toString());
 		//	System.out.println(p.getAbsoluteFile());
 		return null;
-		// TODO Auto-generated method stub
+		
 		
 	}
 	private Game ftaddGame(File rep)
@@ -77,10 +77,10 @@ public class SteamPlat extends Platform
 				}
 		} catch (FileNotFoundException e) 
 		{
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		details[3] =(path + " -applaunch "+ details[0]);
+		details[3] =("steam://rungameid/"+ details[0]);
 		details[4] = "Steam";
 		if (details[0] != null)
 		{
@@ -114,7 +114,7 @@ public class SteamPlat extends Platform
 			
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -148,13 +148,13 @@ public class SteamPlat extends Platform
 	
 	@Override
 	public ArrayList<Game> makelist() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public String getinstallerlink() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

@@ -3,6 +3,8 @@ package fr.zuntini.platform;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import fr.zuntini.game.Game;
@@ -32,14 +34,16 @@ public abstract class Platform
 	         Game g = glist.get(i);
 	         System.out.println("Nom fourni = "+ name + "Nom cherch� : "+ g.getName());
 			 if(g.getName().equals(name))
-				try {
-					Runtime.getRuntime().exec(g.getComrun());
-				} catch (IOException e) {
-
-					System.err.println("Erreur commande de lancement de jeu invalide");
+			 {
+				 try {
+					URI game = new URI(g.getComrun());
+					if (Desktop.isDesktopSupported()) 
+					    Desktop.getDesktop().browse(game);
+				} catch (URISyntaxException | IOException e) {
+					
 					e.printStackTrace();
 				}
-			 
+			 }
 		}
 	}
 	
@@ -50,7 +54,7 @@ public abstract class Platform
 			System.out.println("Fichier =    " +this.path);
 			Desktop.getDesktop().open( new File(this.path));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

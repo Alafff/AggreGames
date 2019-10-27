@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-
+import fr.zuntini.fenetres.LaunchWindow;
 import fr.zuntini.platform.AGList;
 
 
@@ -28,8 +28,16 @@ public class ButtonFactory {
 		{
 			public void actionPerformed(ActionEvent e)
 			{	
+				if (name.contains("Options"))
+				{
+				
+					new LaunchWindow();
+				}
+				else
+				{
 				System.out.println(name);
 				AGList.getPlat(name).execplat();
+				}
 			}
 		});
 	

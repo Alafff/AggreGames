@@ -1,11 +1,14 @@
 package fr.zuntini.traitement;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import fr.external.code.WindowsRegistry;
-import fr.zuntini.platform.*;
+import fr.zuntini.platform.AGList;
+import fr.zuntini.platform.EpicStorePlat;
+import fr.zuntini.platform.GoGPlat;
+import fr.zuntini.platform.OriginPlat;
+import fr.zuntini.platform.SteamPlat;
 
 public class Loading 
 {
@@ -22,11 +25,7 @@ public class Loading
 				String a = sc.nextLine();	
 				String n = null;
 				n = WindowsRegistry.testKey2(a);
-				if (n == null)
-					{
-					//dosomeshit	
-					}
-				else
+				if (n != null)
 				{
 					if (a.equals("Steam"))
 						AGList.add(new SteamPlat(n));
@@ -34,10 +33,12 @@ public class Loading
 						AGList.add(new EpicStorePlat(n));
 					if (a.equals("Origin"))
 						AGList.add(new OriginPlat(n));
+					if (a.equals("GoG Galaxy"))
+						AGList.add(new GoGPlat(n));
 				}
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

@@ -17,7 +17,7 @@ import java.util.prefs.Preferences;
  * @author David Croft (<a href="http://www.davidc.net">www.davidc.net</a>)
  * @version $Id: WindowsRegistry.java 285 2009-06-18 17:48:28Z david $
  */
-@SuppressWarnings({"HardCodedStringLiteral", "StringConcatenation"})
+//@SuppressWarnings({"HardCodedStringLiteral", "StringConcatenation"})
 public class WindowsRegistry
 {
   /* Windows hives */
@@ -35,7 +35,7 @@ public class WindowsRegistry
   private static final int ERROR_SUCCESS = 0;
   private static final int ERROR_FILE_NOT_FOUND = 2;
  
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
 public static String getKeySz(int hive, String keyName, String valueName)
           throws BackingStoreException
   {
@@ -120,21 +120,22 @@ public static String getKeySz(int hive, String keyName, String valueName)
     }
     return result.toString();
   }
- 
-  //@SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
+ //Here begin my part
+  @SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
   private static String testKey(int hive, String keyName, String valueName)
   {
     String s = null;
     String a[] = null;
     try {
       s = getKeySz(hive, keyName, valueName);
-    //  System.out.println("s ============="+ s);
+      //a[0] = s;
+      System.out.println("s ============="+ s);
      if (s.contains(" %"))
     	 a = s.split(" %");
      if (s.contains(","))
     	a = s.split(",");
       s = a[0];
-  //    System.out.println("    >>" + s + "<<");
+ 
       return s;
     }
     catch (BackingStoreException e) {
@@ -143,15 +144,23 @@ public static String getKeySz(int hive, String keyName, String valueName)
     return s;
   }
  
-  //@SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
+  @SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
   public static String testKey2(String arg)
   {
+	 //"Battle.net","Bethesda","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Uplay"};
+	  
     if (arg.equals("Steam"))
     	return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
     if (arg.equals("Epic Store"))
    		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon", "");
     if (arg.equals("Origin"))
    		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\eadm\\shell\\open\\command", "");
+    if (arg.equals("My.com"))
+    	return testKey(HKEY_CURRENT_USER, "Software\\Classes\\mailrugames\\DefaultIcon", "");
+    if (arg.equals("GoG Galaxy"))
+    	return testKey(HKEY_CURRENT_USER, "Software\\Classes\\goggalaxy", "");
+    if (arg.equals("Uplay"))
+    	return testKey(HKEY_CURRENT_USER,"Software\\Ubisoft\\Uplay","");
    return null;
   }
 }

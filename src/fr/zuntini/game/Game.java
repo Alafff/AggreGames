@@ -96,7 +96,6 @@ public class Game extends DefaultMutableTreeNode {
 
 
 
-
 	@Override
 	public String toString() {
 		return "Name = " +name + " Plateforme : " + platform + " Comrun = "+ comrun + " Appid = "+ appid;

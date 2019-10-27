@@ -1,8 +1,6 @@
 package fr.zuntini.fenetres;
 
-/*import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
-*/
+
 import fr.zuntini.factory.ButtonFactory;
 import fr.zuntini.listmaking.MakeList;
 import fr.zuntini.platform.AGList;
@@ -16,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import java.awt.GridLayout;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -35,7 +37,7 @@ import java.util.Scanner;
 
 
 
-public class FenetrePrincipale extends JFrame {
+public class FenetrePrincipale extends JFrame implements DropTargetListener {
 
 	
 	/**
@@ -48,8 +50,7 @@ public class FenetrePrincipale extends JFrame {
 	//private Browser br = new Browser();
 	private JLabel lblNewLabel = new JLabel("");
 	private File f = AGList.getParams();
-//	private MakeList firstList = new MakeList(f, f);
-	private MakeList list = new MakeList(f , f);
+	private MakeList list = new MakeList();
 	/**
 	 * Launch the application.
 	 */
@@ -83,11 +84,10 @@ public class FenetrePrincipale extends JFrame {
 		this.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent arg0) {
-			//	System.out.println("width =" + this.getWidth() + " height = " + this.getHeight() );
 				System.out.println(lblNewLabel.getWidth());
 			}
 		});
-		//this.setUndecorated(true);
+		
 		this.setSize(1230, 700);
 		JToolBar toolBar = new JToolBar();
 		toolBar.setSize(this.getSize());
@@ -116,7 +116,7 @@ public class FenetrePrincipale extends JFrame {
 			if (numLines > 5)
 				numLines = 5;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}	
 		UpPanel.setLayout(new GridLayout(numCol, numLines, 0, 0));
@@ -132,11 +132,9 @@ public class FenetrePrincipale extends JFrame {
 				UpPanel.add(ButtonFactory.getButton(sc.nextLine(), numLines, toolBar.getSize()));
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		// Add a game Button
-		UpPanel.add(ButtonFactory.getButton("Add Games",numLines, toolBar.getSize()));
 	
 		
 		JPanel LeftPanel = new JPanel();
@@ -159,34 +157,14 @@ public class FenetrePrincipale extends JFrame {
 		{
 			public void keyPressed(KeyEvent arg0)
 			{
-		/*		if (txtSearchbar.getText().equals("Search Bar"))
+				if (txtSearchbar.getText().equals("Search Bar"))
 					txtSearchbar.setText("");
-			
-				list.removeAll();
-				if (!(txtSearchbar.getText().equals("Search Bar")))
-				{	
-					for (int j = 0;firstList.getRowCount() > j;j++)
-					{
-						if (firstList.getItem(j).contains(txtSearchbar.getText()))
-							list.add(firstList.getItem(j));
-					}
-				}
-			*/}
+			}
 			public void keyReleased(KeyEvent arg0)
 			{
-		/*		if (txtSearchbar.getText().equals("Search Bar"))
+				if (txtSearchbar.getText().equals("Search Bar"))
 					txtSearchbar.setText("");
-			
-				list.removeAll();
-				if (!(txtSearchbar.getText().equals("Search Bar")))
-				{	
-					for (int j = 0;firstList.getRowCount() > j;j++)
-					{
-						if (firstList.getItem(j).contains(txtSearchbar.getText()))
-							list.add(firstList.getItem(j));
-					}
-				}
-			*/}
+			}
 		});
 		LeftPanel.setLayout(new BorderLayout(0, 0));
 		
@@ -194,38 +172,14 @@ public class FenetrePrincipale extends JFrame {
 		txtSearchbar.setToolTipText("");
 		LeftPanel.add(txtSearchbar, BorderLayout.NORTH);
 		txtSearchbar.setColumns(10);
-		/*list.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("root") {
-				{
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("Steam");
-						node_1.add(new DefaultMutableTreeNode("Game1"));
-						node_1.add(new DefaultMutableTreeNode("Game2"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Discord");
-						node_1.add(new DefaultMutableTreeNode("Game 1"));
-						node_1.add(new DefaultMutableTreeNode("Game2"));
-						node_1.add(new DefaultMutableTreeNode("Game3"));
-					add(node_1);
-					node_1 = new DefaultMutableTreeNode("Epic FDP");
-						node_1.add(new DefaultMutableTreeNode("Game 1"));
-						node_1.add(new DefaultMutableTreeNode("Game 2"));
-						node_1.add(new DefaultMutableTreeNode("Game 3"));
-					add(node_1);
-				}
-			}
-		));*/
+	
 		
 		
 		list.setPreferredSize(new Dimension(315, 200));
 		list.setMaximumSize(new Dimension(315, 200));
 		list.setSize(new Dimension(315, 200));
 		LeftPanel.add(list, BorderLayout.CENTER);
-		/*for (Integer i = 0;i < 100;i++)
-		{
-			list.add(i.toString());
-			firstList.add(i.toString());
-		}*/
+		
 		JPanel BottomPanel = new JPanel();
 		this.getContentPane().add(BottomPanel, BorderLayout.SOUTH);
 		
@@ -234,16 +188,40 @@ public class FenetrePrincipale extends JFrame {
 		
 		this.getContentPane().add(CentralPanel, BorderLayout.CENTER);
 		
-		//BrowserView view = new BrowserView(br);
+	
 		
+		CentralPanel.setBackground(Color.LIGHT_GRAY);
+
+	}
+
+	@Override
+	public void dragEnter(DropTargetDragEvent dtde) {
+		// TODO Auto-generated method stub
 		
-	//	CentralPanel.add(view);
-		//br.setSize(CentralPanel.getWidth(), CentralPanel.getHeight());
-		//br.loadURL("https://www.google.com");
+	}
+
+	@Override
+	public void dragOver(DropTargetDragEvent dtde) {
+		// TODO Auto-generated method stub
 		
-		CentralPanel.setBackground(Color.cyan);
-//	System.out.println(br.isLoading());
-//	System.out.println(br.getURL());
+	}
+
+	@Override
+	public void dropActionChanged(DropTargetDragEvent dtde) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragExit(DropTargetEvent dte) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drop(DropTargetDropEvent dtde) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
