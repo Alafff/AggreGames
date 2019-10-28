@@ -1,6 +1,7 @@
 package fr.zuntini.factory;
 
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -49,17 +50,17 @@ public class PlatFindFactory extends JPanel {
 		setLayout(null);
 		
 		JLabel title = new JLabel(this.name);
-		title.setBounds(0, 0, 0, 0);
-		this.add(title);
+		title.setBounds(118, 27, 46, 14);
+		add(title);
 	
 		
 		
 		JButton btDownload = new JButton("Download");
-		btDownload.setBounds(174, 92, 79, 23);
+		btDownload.setAlignmentX(CENTER_ALIGNMENT);
+		btDownload.setBounds(174, 100, 100, 23);
 		btDownload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.print(AGList.getdownloadlink(name));
 				  try {
 				        Desktop.getDesktop().browse(new URL(AGList.getdownloadlink(name)).toURI());
 				    } catch (Exception e) {

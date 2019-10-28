@@ -1,9 +1,8 @@
 Steam;SOFTWARE\\Classes\\steam\\Shell\\Open\\Command;https://steamcdn-a.akamaihd.net/client/installer/SteamSetup.exe
-Discord Store;;https://discordapp.com/api/download?platform=win
 Epic Store;SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon;https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
 Origin;SOFTWARE\\Classes\\eadm\\shell\\open\\command;https://www.dm.origin.com/download
 Gog Galaxy;Software\\Classes\\goggalaxy;https://content-system.gog.com/open_link/download?path=/open/galaxy/client/setup_galaxy_1.2.45.61.exe
 Battle.net;;https://www.battle.net/download/getInstallerForGame?os=win&locale=enUS&version=LIVE&gameProgram=BATTLENET_APP&id=1354369973.1561969832
 Bethesda;;http://download.cdp.bethesda.net/BethesdaNetLauncher_Setup.exe
 My.Com;Software\\Classes\\mailrugames\\DefaultIcon;http://static.gc.my.com/AllodsenLoader_en.exe
-Uplay;Software\\Ubisoft\\Uplay;
+Uplay;Software\\Ubisoft\\Uplay;http://ubi.li/4vxt9

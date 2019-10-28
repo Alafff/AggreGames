@@ -38,11 +38,10 @@ public class Debut
 				if ( br.readLine() != null)
 				{
 				
-					Loading.loading();
 					new FenetrePrincipale();
 				}
 				else
-					// LaunchWindow lw =
+				
 					   new LaunchWindow();
 					 
 				br.close();

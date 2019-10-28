@@ -1,5 +1,6 @@
 package fr.zuntini.fenetres;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,33 +41,28 @@ public class InstallPlatform extends JFrame {
 			}
 
 		}	
-		
 		pb.setMaximum(lines);
 		pb.setSize(313, 30);
-		
+		pb.setVisible(false);
 		this.setVisible(true);
 		
-		this.setSize(500, lines*200);
+		this.setSize((lines*200),(lines*300) );
 		this.add(pb);
 		this.setLayout(new GridLayout(lines, 0, 0, 0));
 		this.setVisible(visible);
 		JButton launchbutton = new JButton("Launch");
+		launchbutton.setSize(174, 100);
 		launchbutton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
 			{	
-				Loading.loading();
+				boolean all =Loading.loading();
+				if (all = true)
+					new FenetrePrincipale();
 			}
 		});
 		this.add(launchbutton);
-		if (pb.getValue() == pb.getMaximum())
-			new FenetrePrincipale();
-
+		
 	}
-	public boolean getProgress()
-	{
-		if (pb.getValue() != pb.getMaximum())
-			return false;
-		return true;
-	}
+	
 }

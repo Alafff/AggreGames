@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 
 import fr.zuntini.factory.CbFactory;
 import fr.zuntini.platform.AGList;
+import fr.zuntini.platform.Platform;
 import fr.zuntini.traitement.Loading;
 
 public class LaunchWindow extends JFrame{
@@ -42,29 +43,14 @@ public class LaunchWindow extends JFrame{
 	private int height = 390;
 	private File f;
 	private PrintWriter pw;
-	private String[] al = new String []{"Battle.net","Bethesda","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Uplay"};
+	private ArrayList<String> al;
 	private ArrayList<JCheckBox> cbList = new ArrayList<JCheckBox>();
 	
 	
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LaunchWindow window = new LaunchWindow();
-					window.this.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public LaunchWindow() {
 		super();
 		this.f = AGList.getParams();
@@ -85,6 +71,7 @@ public class LaunchWindow extends JFrame{
 				} 
 			}
 		});
+		al = AGList.getAllplatformName();
 		try {
 			pw = new PrintWriter(f, "UTF-8");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -95,7 +82,7 @@ public class LaunchWindow extends JFrame{
 	}
 
 	/**
-	 * Initialize the contents of the this.
+	 * Initialize the contents of the window.
 	 */
 	private void initialize() {
 		

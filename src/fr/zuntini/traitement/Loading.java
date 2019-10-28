@@ -13,36 +13,25 @@ import fr.zuntini.platform.SteamPlat;
 public class Loading 
 {
 	
-	public static void loading()
+	public static boolean loading()
 	{
-		Scanner sc;
-		try
+		
+		try (Scanner sc = new Scanner (AGList.getParams()))
 		{
-			sc = new Scanner (AGList.getParams());
-	
 			while(sc.hasNextLine())
 			{
 				String a = sc.nextLine();	
-				String n = null;
-				n = WindowsRegistry.testKey2(a);
-				if (n != null)
-				{
-					if (a.equals("Steam"))
-						AGList.add(new SteamPlat(n));
-					if (a.equals("Epic Store"))
-						AGList.add(new EpicStorePlat(n));
-					if (a.equals("Origin"))
-						AGList.add(new OriginPlat(n));
-					if (a.equals("GoG Galaxy"))
-						AGList.add(new GoGPlat(n));
-				}
+				String n = WindowsRegistry.testKey2(a);
+				if (n.equals(null))
+					return false;
 			}
 		} catch (FileNotFoundException e) {
 			
 			e.printStackTrace();
 		}
+		return true;
 	}
 	
-		//AGList.add("toto");
+	
 		}
 

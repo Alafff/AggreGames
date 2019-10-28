@@ -4,7 +4,6 @@ package fr.zuntini.fenetres;
 import fr.zuntini.factory.ButtonFactory;
 import fr.zuntini.listmaking.MakeList;
 import fr.zuntini.platform.AGList;
-import fr.zuntini.traitement.Refresh;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -71,7 +70,6 @@ public class FenetrePrincipale extends JFrame implements DropTargetListener {
 	 */
 	private void initialize() 
 	{
-		Refresh a = new Refresh();
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {

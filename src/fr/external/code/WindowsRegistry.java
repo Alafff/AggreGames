@@ -5,6 +5,8 @@ import java.lang.reflect.Method;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+import fr.zuntini.platform.AGList;
+
 
  
 /**
@@ -135,8 +137,6 @@ public static String getKeySz(int hive, String keyName, String valueName)
      if (s.contains(","))
     	a = s.split(",");
       s = a[0];
- 
-      return s;
     }
     catch (BackingStoreException e) {
       System.out.println("    !!" + e.getMessage());
@@ -147,20 +147,10 @@ public static String getKeySz(int hive, String keyName, String valueName)
   @SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
   public static String testKey2(String arg)
   {
+    String a = AGList.getkey(arg);
+    System.out.println("La clé est egale a ="+a);
 	 //"Battle.net","Bethesda","Epic Store", "GoG Galaxy", "Origin","Others","Steam","Uplay"};
-	  
-    if (arg.equals("Steam"))
-    	return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\steam\\Shell\\Open\\Command", "");
-    if (arg.equals("Epic Store"))
-   		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\com.epicgames.launcher\\DefaultIcon", "");
-    if (arg.equals("Origin"))
-   		return testKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\Classes\\eadm\\shell\\open\\command", "");
-    if (arg.equals("My.com"))
-    	return testKey(HKEY_CURRENT_USER, "Software\\Classes\\mailrugames\\DefaultIcon", "");
-    if (arg.equals("GoG Galaxy"))
-    	return testKey(HKEY_CURRENT_USER, "Software\\Classes\\goggalaxy", "");
-    if (arg.equals("Uplay"))
-    	return testKey(HKEY_CURRENT_USER,"Software\\Ubisoft\\Uplay","");
-   return null;
+	  return testKey(HKEY_CURRENT_USER, AGList.getkey(a), "");
+   
   }
 }

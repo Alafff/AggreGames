@@ -77,7 +77,6 @@ public class SteamPlat extends Platform
 				}
 		} catch (FileNotFoundException e) 
 		{
-			
 			e.printStackTrace();
 		}
 		details[3] =("steam://rungameid/"+ details[0]);
@@ -92,12 +91,10 @@ public class SteamPlat extends Platform
 	
 	private void recursivelib(File f)
 	{
-		Scanner sc;
 		String a = null;
 		int i = 0;
-		try {
-			sc = new Scanner (f);
-			
+		try (Scanner sc = new Scanner (f);)
+		{				
 			while (i < 4 )
 			{
 				a =  sc.nextLine();
@@ -109,26 +106,18 @@ public class SteamPlat extends Platform
 				a =  sc.nextLine();
 				if (!a.contains("}"))
 					ftmakelist(new File(destack("rec",a))); 
-			}
-			
-			
-			
-		} catch (FileNotFoundException e) {
-			
+			}								
+		} catch (FileNotFoundException e) {		
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-	
 	
 	private String destack(String param , String s)
 		{
 			String str[] = null;
-	
 			if (param.equals("aid"))
 			{
 				s = s.replaceAll("[\\D]", "");
-			
 			}
 			if (param.equals("name"))
 			{
