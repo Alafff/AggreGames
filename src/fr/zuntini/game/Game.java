@@ -2,6 +2,9 @@ package fr.zuntini.game;
 
 
 
+import fr.zuntini.database.DTOSendAlias;
+import fr.zuntini.traitement.GetAliases;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class Game extends DefaultMutableTreeNode {
@@ -33,6 +36,7 @@ public class Game extends DefaultMutableTreeNode {
 	
 	private String Bettername(String s)
 	{
+		s = GetAliases.check(s);
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i< s.length();i++)
 		{	
@@ -41,7 +45,7 @@ public class Game extends DefaultMutableTreeNode {
 				result.append(' ');
 			result.append(c);
 		}
-
+		new DTOSendAlias(result.toString(), result.toString());
 		return result.toString();
 	}
 	

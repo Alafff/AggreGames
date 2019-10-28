@@ -11,6 +11,7 @@ public class  AGList
 {
 	private static File params ;
 	private static File platlist;
+	private static File aliases;
 	private static ArrayList<String> platname;
 	private static ArrayList<Platform> pl;
 
@@ -21,6 +22,7 @@ public class  AGList
 		platname = new ArrayList<>();
 		params = new File("./ressources/params.txt");
 		platlist = new File("./ressources/Platlist");
+		aliases = new File("./ressources/Aliases");
 		
 	}
 	public static void add(Platform p)
@@ -50,6 +52,7 @@ public class  AGList
 		return params;
 	}
 	public static ArrayList<Platform> getAllplatform() {return pl;}
+	public static File getAliases() {return aliases;}
 
 	public static ArrayList<String> getAllplatformName()
 	{

@@ -7,9 +7,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import fr.zuntini.database.DAOAliases;
 import fr.zuntini.fenetres.FenetrePrincipale;
 import fr.zuntini.fenetres.LaunchWindow;
 import fr.zuntini.platform.AGList;
+import fr.zuntini.traitement.GetAliases;
 
 class Debut
 {
@@ -21,11 +23,12 @@ class Debut
 		boolean debug = false;
 
 		File params = AGList.getParams();
+		DAOAliases Daoa = new DAOAliases();
+		GetAliases.dumpintofile(Daoa.getResultSet());
 		if (!debug)
 		{
 			try 
 			{
-				
 				if (!params.exists())
 				{	
 					params.createNewFile();
