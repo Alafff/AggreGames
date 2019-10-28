@@ -1,15 +1,11 @@
 package fr.zuntini.factory;
 
 import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,9 +19,9 @@ public class PlatFindFactory extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JFileChooser fc;
-	private String name;
-	/**
-	 * Launch the application.
+	private final String name;
+	/*
+	  Launch the application.
 	 */
 	
 
@@ -58,15 +54,12 @@ public class PlatFindFactory extends JPanel {
 		JButton btDownload = new JButton("Download");
 		btDownload.setAlignmentX(CENTER_ALIGNMENT);
 		btDownload.setBounds(174, 100, 100, 23);
-		btDownload.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				  try {
-				        Desktop.getDesktop().browse(new URL(AGList.getdownloadlink(name)).toURI());
-				    } catch (Exception e) {
-				        e.printStackTrace();
-				    }
-			}
+		btDownload.addActionListener(arg0 -> {
+			  try {
+					Desktop.getDesktop().browse(new URL(AGList.getdownloadlink(name)).toURI());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 		});
 		this.add(btDownload);
 		

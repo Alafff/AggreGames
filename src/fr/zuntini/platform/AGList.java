@@ -1,14 +1,10 @@
 package fr.zuntini.platform;
 
-import fr.zuntini.game.Game;
-
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 
 public class  AGList 
@@ -21,8 +17,8 @@ public class  AGList
 	
 	public AGList ()
 	{
-		pl = new ArrayList<Platform>();
-		platname = new ArrayList<String>();
+		pl = new ArrayList<>();
+		platname = new ArrayList<>();
 		params = new File("./ressources/params.txt");
 		platlist = new File("./ressources/Platlist");
 		
@@ -34,31 +30,27 @@ public class  AGList
 	}
 	public static Platform getPlat(String name)
 	{
-		for (int i = 0;i < pl.size();i++)
-		{
-			if (pl.get(i).toString().equals(name))
-					return pl.get(i);
-			
+		for (Platform platform : pl) {
+			if (platform.toString().equals(name))
+				return platform;
+
 		}
 		return null;
 	}
 	public void launchGame (String name , String Pl)
 	{
-		 for (int i = 0;i < pl.size(); i++)
-		 {
-			 if(pl.get(i).getName().equals(Pl))
-				 pl.get(i).LaunchGame(name);
-		 }
+		for (Platform platform : pl) {
+			if (platform.getName().equals(Pl))
+				platform.LaunchGame(name);
+		}
 			 
 	}
-	public void initialize()
-	{
-		
-	}
+
 	public static File getParams() {
 		return params;
 	}
 	public static ArrayList<Platform> getAllplatform() {return pl;}
+
 	public static ArrayList<String> getAllplatformName()
 	{
 		try (BufferedReader br = new BufferedReader(new FileReader(platlist)))
@@ -73,12 +65,8 @@ public class  AGList
 				}
 			}
 			return platname;
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		return null;
 	}
@@ -97,12 +85,8 @@ public class  AGList
 				  }
 					  
 			  }
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		return null;
 	}
@@ -120,12 +104,9 @@ public class  AGList
 				  }
 					  
 			  }
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
+		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		return null;
 	}

@@ -3,7 +3,7 @@ package fr.zuntini.platform;
 import java.io.File;
 import java.util.ArrayList;
 
-import fr.zuntini.game.*;;
+import fr.zuntini.game.Game;
 
 public class OriginPlat extends Platform 
 {

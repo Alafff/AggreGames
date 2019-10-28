@@ -7,8 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -30,8 +28,6 @@ import javax.swing.SwingConstants;
 
 import fr.zuntini.factory.CbFactory;
 import fr.zuntini.platform.AGList;
-import fr.zuntini.platform.Platform;
-import fr.zuntini.traitement.Loading;
 
 public class LaunchWindow extends JFrame{
 
@@ -39,12 +35,10 @@ public class LaunchWindow extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int width = 479;
-	private int height = 390;
-	private File f;
+	private final File f;
 	private PrintWriter pw;
-	private ArrayList<String> al;
-	private ArrayList<JCheckBox> cbList = new ArrayList<JCheckBox>();
+	private final ArrayList<String> al;
+	private ArrayList<JCheckBox> cbList = new ArrayList<>();
 	
 	
 	/**
@@ -59,12 +53,11 @@ public class LaunchWindow extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				try (BufferedReader br = new BufferedReader(new FileReader(f))){
-					;
+
 					if (br.readLine() == null)
 						f.delete();
 					else
 						new FenetrePrincipale();
-					br.close();
 				} catch (IOException e) {
 					
 					e.printStackTrace();
@@ -89,6 +82,8 @@ public class LaunchWindow extends JFrame{
 		this.setTitle("AggreGames First time");
 		this.setBounds(100, 100, 500, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		int width = 479;
+		int height = 390;
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -165,47 +160,40 @@ public class LaunchWindow extends JFrame{
 	
 		JButton btnLaunch = new JButton("Launch");
 		downpanel.add(btnLaunch);
-		btnLaunch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
+		btnLaunch.addActionListener(arg0 -> {
+			for (JCheckBox a : cbList)
 			{
-				for (JCheckBox a : cbList)
+				if (a.isSelected())
+					for (String s : al) //Suppress HTML Color
+					{
+						if (a.getText().contains(s))
+							pw.println(s);
+					}
+
+			}
+			pw.close();
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				if (br.readLine() == null)
 				{
-					if (a.isSelected())
-						for (String s : al) //Suppress HTML Color
-						{
-							if (a.getText().contains(s))
-								pw.println(s);
-						}
-						
-				}
-				pw.close();
-				try {
-					BufferedReader br = new BufferedReader(new FileReader(f));
-					if (br.readLine() == null)
-					{
-						f.delete();
-						br.close();
-						System.exit(0);
-					}
-					else
-					{
-											
-						InstallPlatform ip = new InstallPlatform(cbList);
-						
-					}
+					f.delete();
 					br.close();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
+					System.exit(0);
 				}
+				else
+				{
+
+					InstallPlatform ip = new InstallPlatform(cbList);
+
+				}
+				br.close();
+			} catch (IOException e) {
+
+				e.printStackTrace();
 			}
 		});
 		JButton btnQuitter = new JButton("Quitter");
-		btnQuitter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		btnQuitter.addActionListener(e -> System.exit(0));
 		downpanel.add(btnQuitter);
 	}
 	

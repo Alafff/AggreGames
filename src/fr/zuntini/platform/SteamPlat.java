@@ -15,18 +15,14 @@ import java.util.Scanner;
 
 public class SteamPlat extends Platform 
 {
-	
-	
 
-	private File gfolder;
-	
-	
+
 	public SteamPlat(String path) {
 		super("Steam", path);
 		
 		
 		String[] a = this.path.split("steam.exe");
-		gfolder = new File((a[0] + "steamapps\\"));
+		File gfolder = new File((a[0] + "steamapps\\"));
 		
 		gfolder.listFiles();
 		ftmakelist(gfolder);
@@ -40,16 +36,14 @@ public class SteamPlat extends Platform
 		
 		
 		File[] f = rep.listFiles();
-		for (int i = 0;i < f.length;i++)
-		{
-			if (f[i].toString().contains("appmanifest"))
-			{
-				control = ftaddGame(f[i]);
+		for (File file : f) {
+			if (file.toString().contains("appmanifest")) {
+				control = ftaddGame(file);
 				if (control != null)
 					glist.add(control);
 			}
-			if (f[i].toString().contains("library"))
-				recursivelib(f[i]);
+			if (file.toString().contains("library"))
+				recursivelib(file);
 		}
 		//	System.out.println(p.toString());
 		//	System.out.println(p.getAbsoluteFile());
@@ -91,9 +85,9 @@ public class SteamPlat extends Platform
 	
 	private void recursivelib(File f)
 	{
-		String a = null;
+		String a;
 		int i = 0;
-		try (Scanner sc = new Scanner (f);)
+		try (Scanner sc = new Scanner (f))
 		{				
 			while (i < 4 )
 			{
@@ -114,7 +108,7 @@ public class SteamPlat extends Platform
 	
 	private String destack(String param , String s)
 		{
-			String str[] = null;
+			String[] str;
 			if (param.equals("aid"))
 			{
 				s = s.replaceAll("[\\D]", "");

@@ -12,30 +12,28 @@ public class CbFactory extends JCheckBox {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String redcolor = "<html><font color=\"red\">";
-	private String greencolor = "<html><font color=\"green\">";
-	private String endcolor = "</font></html>";
-	private boolean here = false; 
 	
 	public CbFactory(String name, Dimension size)
 	{
+
+
 		super(name);
+
+		String redcolor = "<html><font color=\"red\">";
+		String greencolor = "<html><font color=\"green\">";
+		String endcolor = "</font></html>";
 		this.setSize(size);
 		this.setPreferredSize(size);
 		this.setMaximumSize(size);
 		this.setMinimumSize(size);
 		this.setName(name);
+
 		if (WindowsRegistry.testKey2(name) != null)
 		{
-			here = true;
 			this.setText(greencolor+name+endcolor);
 		}
 		else
-			this.setText(redcolor+name+endcolor);
+			this.setText(redcolor +name+endcolor);
 	}
-	
-	public boolean ishere()
-	{
-		return here;
-	}
+
 }

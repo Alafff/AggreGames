@@ -4,15 +4,12 @@ package fr.zuntini.listmaking;
 
 import java.awt.Dimension;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -31,7 +28,6 @@ public class MakeList extends JTree {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private DefaultMutableTreeNode root;
 	private DefaultMutableTreeNode others;
 	private Map<String, DefaultMutableTreeNode> platform = new HashMap<>();
 
@@ -60,15 +56,14 @@ public class MakeList extends JTree {
 	private void createNodes() 
 	{
 
-			root = new DefaultMutableTreeNode("root") {
-		
+		DefaultMutableTreeNode root = new DefaultMutableTreeNode("root") {
+
 			private static final long serialVersionUID = 1L;
 
 			{
-				
+
 				ArrayList<Platform> list = AGList.getAllplatform();
-				for (Platform p : list)
-				{
+				for (Platform p : list) {
 					DefaultMutableTreeNode node = new DefaultMutableTreeNode(p.getName());
 					this.add(node);
 					for (Game g : p.getGlist())

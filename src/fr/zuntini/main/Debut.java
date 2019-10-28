@@ -10,19 +10,17 @@ import java.io.IOException;
 import fr.zuntini.fenetres.FenetrePrincipale;
 import fr.zuntini.fenetres.LaunchWindow;
 import fr.zuntini.platform.AGList;
-import fr.zuntini.traitement.Loading;
 
-public class Debut 
+class Debut
 {
-	private static File params ;
 	private static AGList agList = new AGList();
 	
 	
 	public static void main(String[] args)
 	{
 		boolean debug = false;
-		
-		params = AGList.getParams();
+
+		File params = AGList.getParams();
 		if (!debug)
 		{
 			try 

@@ -83,10 +83,7 @@ public static String getKeySz(int hive, String keyName, String valueName)
     catch (InvocationTargetException e) {
       throw new BackingStoreException(e.getCause());
     }
-    catch (NoSuchMethodException e) {
-      throw new BackingStoreException(e);
-    }
-    catch (IllegalAccessException e) {
+    catch (NoSuchMethodException | IllegalAccessException e) {
       throw new BackingStoreException(e);
     }
   }
@@ -123,11 +120,11 @@ public static String getKeySz(int hive, String keyName, String valueName)
     return result.toString();
   }
  //Here begin my part
-  @SuppressWarnings({"UseOfSystemOutOrSystemErr", "HardcodedFileSeparator"})
+  @SuppressWarnings({"UseOfSystemOutOrSystemErr"})
   private static String testKey(int hive, String keyName, String valueName)
   {
     String s = null;
-    String a[] = null;
+    String[] a = null;
     try {
       s = getKeySz(hive, keyName, valueName);
       //a[0] = s;
@@ -144,7 +141,6 @@ public static String getKeySz(int hive, String keyName, String valueName)
     return s;
   }
  
-  @SuppressWarnings({"HardcodedFileSeparator", "DuplicateStringLiteralInspection"})
   public static String testKey2(String arg)
   {
     String a = AGList.getkey(arg);

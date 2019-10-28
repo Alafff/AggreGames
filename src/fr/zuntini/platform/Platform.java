@@ -21,7 +21,7 @@ public abstract class Platform
 	{
 		this.name = name;
 		this.path = path;
-		glist = new ArrayList<Game>();
+		glist = new ArrayList<>();
 	}
 	public abstract ArrayList<Game> ftmakelist(File rep); // Making list for first time 
 	public abstract ArrayList<Game> makelist(); // Get a list of all the games of the platform and send it back
@@ -29,21 +29,18 @@ public abstract class Platform
 	
 	public void LaunchGame(String name)
 	{
-		for (int i = 0; i < glist.size(); i++) 
-		{
-	         Game g = glist.get(i);
-	         System.out.println("Nom fourni = "+ name + "Nom cherch� : "+ g.getName());
-			 if(g.getName().equals(name))
-			 {
-				 try {
+		for (Game g : glist) {
+			System.out.println("Nom fourni = " + name + "Nom cherch� : " + g.getName());
+			if (g.getName().equals(name)) {
+				try {
 					URI game = new URI(g.getComrun());
-					if (Desktop.isDesktopSupported()) 
-					    Desktop.getDesktop().browse(game);
+					if (Desktop.isDesktopSupported())
+						Desktop.getDesktop().browse(game);
 				} catch (URISyntaxException | IOException e) {
-					
+
 					e.printStackTrace();
 				}
-			 }
+			}
 		}
 	}
 	

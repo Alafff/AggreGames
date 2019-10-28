@@ -5,10 +5,6 @@ import java.util.Scanner;
 
 import fr.external.code.WindowsRegistry;
 import fr.zuntini.platform.AGList;
-import fr.zuntini.platform.EpicStorePlat;
-import fr.zuntini.platform.GoGPlat;
-import fr.zuntini.platform.OriginPlat;
-import fr.zuntini.platform.SteamPlat;
 
 public class Loading 
 {

@@ -44,14 +44,11 @@ public class FenetrePrincipale extends JFrame implements DropTargetListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtSearchbar;
-	
-	
-	//private Browser br = new Browser();
-	private JLabel lblNewLabel = new JLabel("");
-	private File f = AGList.getParams();
-	private MakeList list = new MakeList();
-	/**
-	 * Launch the application.
+	private final JLabel lblNewLabel = new JLabel("");
+	private final File f = AGList.getParams();
+	private final MakeList list = new MakeList();
+	/*
+	  Launch the application.
 	 */
 	
 

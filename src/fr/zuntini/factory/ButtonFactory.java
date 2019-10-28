@@ -3,8 +3,6 @@ package fr.zuntini.factory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -24,20 +22,16 @@ public class ButtonFactory {
 		jb.setBackground(Color.RED);
 		jb.setMinimumSize(new Dimension(calc, 700 ));
 		
-		jb.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e)
-			{	
-				if (name.contains("Options"))
-				{
-				
-					new LaunchWindow();
-				}
-				else
-				{
-				System.out.println(name);
-				AGList.getPlat(name).execplat();
-				}
+		jb.addActionListener(e -> {
+			if (name.contains("Options"))
+			{
+
+				new LaunchWindow();
+			}
+			else
+			{
+			System.out.println(name);
+			AGList.getPlat(name).execplat();
 			}
 		});
 	

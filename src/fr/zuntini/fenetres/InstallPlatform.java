@@ -1,6 +1,5 @@
 package fr.zuntini.fenetres;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,17 +11,15 @@ import javax.swing.JFrame;
 import javax.swing.JProgressBar;
 
 import fr.zuntini.factory.PlatFindFactory;
-import fr.zuntini.platform.AGList;
 import fr.zuntini.traitement.Loading;
 
-public class InstallPlatform extends JFrame {
+class InstallPlatform extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JProgressBar pb = new JProgressBar();
-	
+
 	public InstallPlatform (ArrayList<JCheckBox> cbList)
 	{
 		super("Resolving issue");
@@ -40,7 +37,8 @@ public class InstallPlatform extends JFrame {
 				lines++;
 			}
 
-		}	
+		}
+		JProgressBar pb = new JProgressBar();
 		pb.setMaximum(lines);
 		pb.setSize(313, 30);
 		pb.setVisible(false);
@@ -52,14 +50,11 @@ public class InstallPlatform extends JFrame {
 		this.setVisible(visible);
 		JButton launchbutton = new JButton("Launch");
 		launchbutton.setSize(174, 100);
-		launchbutton.addActionListener(new ActionListener() 
+		launchbutton.addActionListener(e ->
 		{
-			public void actionPerformed(ActionEvent e)
-			{	
-				boolean all =Loading.loading();
-				if (all = true)
-					new FenetrePrincipale();
-			}
+			boolean all =Loading.loading();
+			if (all = true)
+				new FenetrePrincipale();
 		});
 		this.add(launchbutton);
 		
