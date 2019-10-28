@@ -33,16 +33,16 @@ public class Game extends DefaultMutableTreeNode {
 	
 	private String Bettername(String s)
 	{
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		for (int i = 0; i< s.length();i++)
 		{	
 			Character c = s.charAt(i);
 			if(i!= 0 && (c.toString().matches("[A-Z]") || c.toString().matches("[0-9]")))
-				result += ' ';
-			result += c;
+				result.append(' ');
+			result.append(c);
 		}
 
-		return result;
+		return result.toString();
 	}
 	
 	
